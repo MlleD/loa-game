@@ -1,4 +1,5 @@
 #ifndef GAMEELEMENT_H
+#define GAMEELEMENT_H
 #include "GameElement.hpp"
 #endif
 

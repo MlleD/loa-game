@@ -1,6 +1,7 @@
+#ifndef GAMEELEMENT_H
 #define GAMEELEMENT_H
 
-#ifdef GAMEELEMENT_H
+
 
 typedef char Symbole;
 
