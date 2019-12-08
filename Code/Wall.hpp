@@ -1,4 +1,5 @@
 #ifndef GAMESTRUCTURE_H
+#define GAMESTRUCTURE_H
 #include "GameStructure.hpp"
 #endif
 
