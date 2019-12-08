@@ -6,7 +6,7 @@ typedef char Symbole;
 
 class GameElement
 {
-private:
+protected:
     Symbole s;
 
 public:
