@@ -1,6 +1,6 @@
 #ifndef GAMEELEMENT_H
-#define GAMEELEMENT_H
 #include "GameElement.hpp"
+#define GAMEELEMENT_H
 #endif
 
 class Case
