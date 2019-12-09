@@ -3,6 +3,8 @@
 #define GAMEELEMENT_H
 #endif
 
+#ifndef CASE_H
+#define CASE_H
 class Case
 {
 private:
@@ -13,3 +15,4 @@ public:
     Case(char c);
     void print();
 };
+#endif

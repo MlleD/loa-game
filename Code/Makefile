@@ -1,9 +1,10 @@
 CPP = g++ --std=c++11 -Wall
 ALL = Game
 all: $(ALL)
-Game : Game.o Wall.o Case.o GameStructure.o GameElement.o Door.o Ground.o
+Game : GameManager.o Map.o Wall.o Case.o GameStructure.o GameElement.o Door.o Ground.o
 	$(CPP) -o $@ $^
-Game.o : Game.cpp Wall.hpp Case.hpp Ground.hpp Door.hpp
+GameManager.o : GameManager.cpp Map.hpp
+Map.o : Map.cpp Map.hpp Wall.hpp Case.hpp Ground.hpp Door.hpp
 GameElement.o : GameElement.cpp
 GameStructure.o : GameStructure.cpp GameStructure.hpp
 Wall.o : Wall.cpp Wall.hpp GameStructure.hpp
