@@ -1,6 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "Wall.hpp"
+#include "Case.hpp"
+#include "Ground.hpp"
+#include "Door.hpp"
+
 #include "Map.hpp"
 
 int main(int argc, char const *argv[])

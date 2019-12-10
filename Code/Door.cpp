@@ -15,7 +15,3 @@ void Door::close()
     s = '-';
     is_opened = false;
 }
-void Door::print()
-{
-    std::cout << s;
-}

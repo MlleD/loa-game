@@ -11,30 +11,34 @@ Map::Map(int h, int w) : height(h), width(w), maxIndex(w * h - 1)
     // Premiere ligne, celle du haut
     for (int i = 0; i < width; i++)
     {
-        Case c(new Wall());
-        matrix.push_back(c);
+        Wall w;
+        matrix.push_back(Case(w));
     }
     
     // Lignes intermediaires
     for (int i = 1; i < height - 1; i++)
     {
-        matrix.push_back(new Wall());
+        Wall w1;
+        matrix.push_back(w1);
         for (int j = 1; j < width - 1; j++)
         {
-            matrix.push_back(new Ground());
+            Ground g;
+            matrix.push_back(Case(g));
         }
-        matrix.push_back(new Wall());
+        Wall w2;
+        matrix.push_back(Case(w2));
     }
 
     //Ligne du bas
-        for (int i = 0; i < width; i++)
+    for (int i = 0; i < width; i++)
     {
-        Case c(new Wall());
-        matrix.push_back(c);
+        Wall w;
+        matrix.push_back(Case(w));
     }
 
     // Ajout d'une porte fermee, en bas a droite
-    matrix[maxIndex - 1] = Case(new Door());
+    Door d;
+    matrix[maxIndex - 1] = Case(d);
 }
 
 void Map::print()

@@ -1,7 +1,4 @@
-#ifndef GAMESTRUCTURE_H
-#define GAMESTRUCTURE_H
 #include "GameStructure.hpp"
-#endif
 
 class Door : public GameStructure
 {
@@ -11,5 +8,4 @@ class Door : public GameStructure
         Door();
         void open();
         void close();
-        void print();
 };

@@ -1,11 +1,5 @@
 #include "GameStructure.hpp"
 
-GameStructure::GameStructure()
-{}
+GameStructure::GameStructure() {}
 
-
-/*void GameStructure::print()
-{
-    std::cout << "Structure de jeu dont le symbole est " << std::endl;
-}
-*/
+GameStructure::~GameStructure() {}
