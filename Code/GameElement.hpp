@@ -12,8 +12,9 @@ protected:
 
 public:
     GameElement();
-    virtual void print() = 0;
-    
+    GameElement(const GameElement& ge);
+    //virtual void print() = 0;
+    void print();
 };
 
 #endif

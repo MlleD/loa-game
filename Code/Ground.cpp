@@ -5,7 +5,3 @@ Ground::Ground()
 {
     s = ' ';
 }
-void Ground::print()
-{
-    std::cout << ' ';
-}

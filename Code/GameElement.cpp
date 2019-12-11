@@ -2,8 +2,11 @@
 #include <iostream>
 
 GameElement::GameElement() {}
-
+GameElement::GameElement(const GameElement& ge)
+{
+    s = ge.s;
+}
 void GameElement::print()
 {
-    std::cout << "Elément de jeu dont le symbole est " << s << std::endl;
+    std::cout << s;
 }

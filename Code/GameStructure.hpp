@@ -2,12 +2,15 @@
 #include "GameElement.hpp"
 #endif
 
+#ifndef GAMESTRUCTURE_H
+#define GAMESTRUCTURE_H
 class GameStructure : public GameElement
 {
 private:
-    //bool accessibility;
+    bool accessibility;
 public:
     GameStructure();
-    //virtual void print() = 0;
     //virtual bool is_accessible() = 0;
+    ~GameStructure();
 };
+#endif

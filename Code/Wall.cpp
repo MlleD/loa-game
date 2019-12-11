@@ -5,7 +5,3 @@ Wall::Wall()
 {
     s = 'X';
 }
-void Wall::print() 
-{
-    std::cout << 'X';
-}

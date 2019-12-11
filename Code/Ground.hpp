@@ -1,7 +1,4 @@
-#ifndef GAMESTRUCTURE_H
-#define GAMESTRUCTURE_H
 #include "GameStructure.hpp"
-#endif
 
 class Ground : public GameStructure
 {
@@ -9,5 +6,4 @@ class Ground : public GameStructure
         
     public:
         Ground();
-        void print();
 };

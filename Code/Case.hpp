@@ -3,13 +3,16 @@
 #define GAMEELEMENT_H
 #endif
 
+#ifndef CASE_H
+#define CASE_H
 class Case
 {
 private:
-    GameElement *element;
+    GameElement element;
 
 public:
-    Case(GameElement *e);
-    Case(char c);
+    Case(GameElement &e);
     void print();
+    ~Case();
 };
+#endif
