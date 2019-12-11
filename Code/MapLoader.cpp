@@ -80,7 +80,7 @@ Map MapLoader::get_map (string file_path)
                 cout << "Integer overflow: std::out_of_range thrown" << endl;
             }
         }
-        Map map(width, height);
+        Map map(height, width);
         int y = 0;
         while ( y < height && getline (file, line) )
         {
