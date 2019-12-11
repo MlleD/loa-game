@@ -3,16 +3,15 @@
 #include "Map.hpp"
 #include "GameElement.hpp"
 #include <iostream>
+#include <string>
 #endif
 
 
-class MapeLoader
+class MapLoader
 {
 private :
-    static GameElement get_game_element(String symbol)
+    static GameElement get_game_element (char symbol);
 public:
-    static Map get_map (String file_path);
-    static void save (Map map, String file_path);
+    static Map get_map (std::string file_path);
+    static void save (Map map, std::string file_path);
 };
-
-#endif

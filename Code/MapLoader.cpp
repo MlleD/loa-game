@@ -1,6 +1,5 @@
 #include "MapLoader.hpp"
 #include <fstream>
-#include <string>
 
 #include "Wall.hpp"
 #include "Ground.hpp"
@@ -8,39 +7,38 @@
 
 using namespace std;
 
-GameElement MapLoader::get_game_element(String symbol)
+GameElement MapLoader::get_game_element (char symbol)
 {
-    GameElement element;
-    switch (symbol)
+    if ( symbol == (' ') )
     {
-    case " ":
-        element = new Ground();
-        break;
-    case "X":
-        element = new Wall();
-        break;
-    case "+":
-        Door door = new Door()
-        door.open();
-        element = door;
-        break;
-    case "-":
-        element = new Door();
-        break;
-    
-    default:
-        element = nullptr;
-        cout << "Unknow symbol : " << symbol << endl;
-        break;
-    return element;
+        Ground g;
+        return g;
     }
+    if ( symbol == ('X') )
+    {
+        Wall w;
+        return w;
+    }
+    if ( symbol == ('+') )
+    {
+        Door door;
+        door.open();
+        return door;
+    }
+    if ( symbol == ('-') )
+    {
+        Door d;
+        return d;
+    }
+    cout << "Unknow symbol : " << symbol << endl;
+    GameElement elt;
+    return elt;
 }
 
 Map MapLoader::get_map (string file_path)
 {
     int width = 0;
     int height = 0;
-    Map map = nullptr;
     ifstream file (file_path);
     string line;
     if (file.is_open())
@@ -77,15 +75,15 @@ Map MapLoader::get_map (string file_path)
                 cout << "Integer overflow: std::out_of_range thrown" << endl;
             }
         }
-        map = new Map(widht, height);
+        Map map(width, height);
         int y = 0;
         while ( y < height && getline (file, line) )
         {
-            if ( line.length != widht )
+            if ( line.length() != width )
             {
-                cout << "A line has a wrong widht" << endl
+                cout << "A line has a wrong widht" << endl;
             }
-            for (int x = 0; x < line.length; x++)
+            for (int x = 0; x < line.length(); x++)
             {
                 GameElement elt = get_game_element(line[x]);
                 map.put(x,y,elt);
@@ -97,17 +95,19 @@ Map MapLoader::get_map (string file_path)
             cout << "Wrong height number" << endl;
         }
         file.close();
+        return map;
     }
     else 
     {
         cout << "Unable to open file" << endl;
+        return Map(0,0);
     }
-    return map;
 }
 
-void MapLoader::save(Map map, String file_path)
+void MapLoader::save(Map map, string file_path)
 {
-    remove(file_path);
+
+    remove(file_path.c_str());
     ofstream file (file_path);
     if (file.is_open())
     {
