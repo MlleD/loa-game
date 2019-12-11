@@ -1,3 +1,4 @@
+#include "GameManager.hpp"
 #include <iostream>
 #include <cstdlib>
 
@@ -6,7 +7,6 @@
 #include "Ground.hpp"
 #include "Door.hpp"
 
-#include "Map.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -21,8 +21,14 @@ int main(int argc, char const *argv[])
         std::cerr << "Les arguments doivent être positifs" << std::endl;
         return -2;
     }
-    Map Map(atoi(argv[1]), atoi(argv[2]));
-    Map.print();
+    Map map(atoi(argv[1]), atoi(argv[2]));
+    map.print();
+
+    MapLoader::save(map, "plateau2.board");
+
+    Map m = MapLoader::get_map("plateau1.board");
+    m.print();
+
 
     return 0;
 }
