@@ -12,3 +12,13 @@ void Case::print()
 }
 
 Case::~Case() {}
+
+GameElement Case::get_element()
+{
+    return element;
+}
+
+void Case::set_element(GameElement element)
+{
+    Case::element = element;
+}

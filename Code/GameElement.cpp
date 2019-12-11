@@ -10,3 +10,8 @@ void GameElement::print()
 {
     std::cout << s;
 }
+
+Symbole GameElement::get_symbole()
+{
+    return s;
+}

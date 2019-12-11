@@ -15,6 +15,7 @@ public:
     GameElement(const GameElement& ge);
     //virtual void print() = 0;
     void print();
+    Symbole get_symbole();
 };
 
 #endif

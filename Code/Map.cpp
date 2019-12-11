@@ -53,3 +53,35 @@ void Map::print()
     }
     std::cout << std::endl;
 }
+
+int Map::get_height() const
+{
+    return height;
+}
+
+int Map::get_width() const
+{
+    return width;
+}
+
+GameElement Map::get(int x, int y)
+{
+    if (x >= Map::get_width() || y >= Map::get_height())
+    {
+        std::cout << "Index out of range" << std::endl;
+        //todo: generate an Exception
+        return GameElement();
+    }
+    return matrix[y * Map::get_width() + x].get_element();
+}
+
+int Map::put(int x, int y, GameElement element)
+{
+    if (x >= Map::get_width() || y >= Map::get_height())
+    {
+        std::cout << "Index out of range" << std::endl;
+        return -1;
+    }
+    matrix[y*get_width() + x].set_element(element);
+    return 0;
+}

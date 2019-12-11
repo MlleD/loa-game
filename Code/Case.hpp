@@ -14,5 +14,7 @@ public:
     Case(GameElement &e);
     void print();
     ~Case();
+    GameElement get_element();
+    void set_element(GameElement element);
 };
 #endif

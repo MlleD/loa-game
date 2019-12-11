@@ -30,6 +30,7 @@ GameElement MapLoader::get_game_element (char symbol)
         Door d;
         return d;
     }
+        //todo: generate an Exception
     cout << "Unknow symbol : " << symbol << endl;
     GameElement elt;
     return elt;
@@ -52,10 +53,12 @@ Map MapLoader::get_map (string file_path)
             }
             catch (invalid_argument const &e)
             {
+        //todo: generate an Exception
                 cout << "Bad input: std::invalid_argument thrown" << endl;
             }
             catch (out_of_range const &e)
             {
+        //todo: generate an Exception
                 cout << "Integer overflow: std::out_of_range thrown" << endl;
             }
         }
@@ -68,10 +71,12 @@ Map MapLoader::get_map (string file_path)
             }
             catch (invalid_argument const &e)
             {
+        //todo: generate an Exception
                 cout << "Bad input: std::invalid_argument thrown" << endl;
             }
             catch (out_of_range const &e)
             {
+        //todo: generate an Exception
                 cout << "Integer overflow: std::out_of_range thrown" << endl;
             }
         }
@@ -81,6 +86,7 @@ Map MapLoader::get_map (string file_path)
         {
             if ( line.length() != width )
             {
+        //todo: generate an Exception
                 cout << "A line has a wrong widht" << endl;
             }
             for (int x = 0; x < line.length(); x++)
@@ -92,6 +98,7 @@ Map MapLoader::get_map (string file_path)
         }
         if (y < height || getline(file, line))
         {
+        //todo: generate an Exception
             cout << "Wrong height number" << endl;
         }
         file.close();
@@ -99,6 +106,7 @@ Map MapLoader::get_map (string file_path)
     }
     else 
     {
+        //todo: generate an Exception
         cout << "Unable to open file" << endl;
         return Map(0,0);
     }
@@ -119,7 +127,7 @@ void MapLoader::save(Map map, string file_path)
         {
             for (int x = 0 ; x < width ; x++)
             {
-                file << map.get(x,y).to_str();
+                file << map.get(x,y).get_symbole();
             }
             file << endl;
         }
@@ -127,6 +135,7 @@ void MapLoader::save(Map map, string file_path)
     }
     else
     {
+        //todo: generate an Exception
         cout << "Unable to open file : " << file_path << endl;
     }
 }
