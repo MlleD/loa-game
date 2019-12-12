@@ -1,5 +1,6 @@
 #include "MapLoader.hpp"
 #include <fstream>
+#include <stdexcept>
 
 #include "Wall.hpp"
 #include "Ground.hpp"
@@ -30,10 +31,7 @@ GameElement MapLoader::get_game_element (char symbol)
         Door d;
         return d;
     }
-        //todo: generate an Exception
-    cout << "Unknow symbol : " << symbol << endl;
-    GameElement elt;
-    return elt;
+    throw invalid_argument(string("Unknow symbol : ") + symbol);
 }
 
 Map MapLoader::get_map (string file_path)
@@ -49,17 +47,11 @@ Map MapLoader::get_map (string file_path)
         {
             try 
             {
-                width = stoi(line);
+                width = stoi(line,nullptr);
             }
-            catch (invalid_argument const &e)
+            catch(const exception &e)
             {
-        //todo: generate an Exception
-                cout << "Bad input: std::invalid_argument thrown" << endl;
-            }
-            catch (out_of_range const &e)
-            {
-        //todo: generate an Exception
-                cout << "Integer overflow: std::out_of_range thrown" << endl;
+                throw;
             }
         }
         //on récupère la hauteur du plateau dans la seconde ligne
@@ -67,17 +59,11 @@ Map MapLoader::get_map (string file_path)
         {
             try 
             {
-                height = stoi(line);
+                height = stoi(line,nullptr);
             }
-            catch (invalid_argument const &e)
+            catch(const exception &e)
             {
-        //todo: generate an Exception
-                cout << "Bad input: std::invalid_argument thrown" << endl;
-            }
-            catch (out_of_range const &e)
-            {
-        //todo: generate an Exception
-                cout << "Integer overflow: std::out_of_range thrown" << endl;
+                throw;
             }
         }
         Map map(height, width);
@@ -86,29 +72,34 @@ Map MapLoader::get_map (string file_path)
         {
             if ( line.length() != width )
             {
-        //todo: generate an Exception
-                cout << "A line has a wrong widht" << endl;
+                throw runtime_error("Wrong number of symbols in a line");
             }
             for (int x = 0; x < line.length(); x++)
             {
-                GameElement elt = get_game_element(line[x]);
-                map.put(x,y,elt);
+                try
+                {
+                    GameElement elt = get_game_element(line[x]);
+                    map.put(x,y,elt);
+                }
+                catch(exception const& e)
+                {
+                    cout << string ("At x : ") << to_string(x) << string (" y : ") << to_string(y) << endl; 
+                    throw;
+                }
+                
             }
             y++;
         }
         if (y < height || getline(file, line))
         {
-        //todo: generate an Exception
-            cout << "Wrong height number" << endl;
+            throw runtime_error("Wrong number of line");
         }
         file.close();
         return map;
     }
     else 
     {
-        //todo: generate an Exception
-        cout << "Unable to open file" << endl;
-        return Map(0,0);
+        throw runtime_error("Unable to open the file "+file_path);
     }
 }
 
@@ -135,7 +126,6 @@ void MapLoader::save(Map map, string file_path)
     }
     else
     {
-        //todo: generate an Exception
-        cout << "Unable to open file : " << file_path << endl;
+        throw runtime_error("Unable to open the file "+file_path);
     }
 }
