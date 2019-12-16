@@ -16,12 +16,15 @@ int main(int argc, char const *argv[])
         std::cerr << (NB_ARGS - 1) << " arguments (hauteur, largeur du plateau) sont nécessaires" << std::endl;
         return -1;
     }
-    if (argv[1] < 0 || argv[2] < 0)
+    int height = atoi(argv[1]);
+    int width = atoi(argv[2]);
+
+    if (height < 3 || width < 3)
     {
-        std::cerr << "Les arguments doivent être positifs" << std::endl;
+        std::cerr << "Les arguments hauteur et largeur du plateau doivent être supérieurs à 3" << std::endl;
         return -2;
     }
-    Map map(atoi(argv[1]), atoi(argv[2]));
+    Map map(height, width);
     map.print();
 
     MapLoader::save(map, "plateau2.board");
