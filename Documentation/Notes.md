@@ -29,6 +29,11 @@ puis changer d'implémentation et utiliser à la place un type conteneur (le Con
 
 - #### Factory
 
+- ### Builder pattern
+Où ? Construction de la Map.
+Pourquoi ? Trop d'arguments dans le constructeur.
+But du pattern : Séparer la construction de l'objet et sa représentation
+
 
 ### 4. Forme du code
 
