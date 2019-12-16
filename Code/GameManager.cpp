@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
 
     MapLoader::save(map, "plateau2.board");
 
-    Map m = MapLoader::get_map("plateau1.board");
+    Map m = MapLoader::get_map("plateau2.board");
     m.print();
 
 
