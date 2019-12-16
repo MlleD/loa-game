@@ -1,4 +1,5 @@
 #include "MapLoader.hpp"
+#include "MapBuilder.hpp"
 #include <fstream>
 #include <stdexcept>
 
@@ -66,7 +67,9 @@ Map MapLoader::get_map (string file_path)
                 throw;
             }
         }
-        Map map(height, width);
+
+        MapBuilder builder(height, width);
+        Map map(builder);
         int y = 0;
         while ( y < height && getline (file, line) )
         {

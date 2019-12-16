@@ -1,4 +1,5 @@
 #include "Case.hpp"
+#include "MapBuilder.hpp"
 #include <vector>
 
 typedef std::vector<Case> Board;
@@ -10,11 +11,18 @@ private:
     const int width;
     const int maxIndex;
     Board matrix;
+    int number_chargers;
+    int number_diamonds;
+    int number_monsters; 
 
 public:
-    Map(int h, int w);
+    //Map(int h, int w, int nb_monsters, int nb_diamonds, int nb_chargers);
+    Map(MapBuilder builder);
     int get_height() const;
     int get_width() const;
+    int get_number_monsters() const;
+    int get_number_diamonds() const;
+    int get_number_chargers() const;
     GameElement get(int x, int y);
     int put(int x, int y, GameElement element);
 

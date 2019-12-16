@@ -6,8 +6,11 @@
 #include "Door.hpp"
 #include "Map.hpp"
 
-Map::Map(int h, int w) : height(h), width(w), maxIndex(w * h - 1)
-{
+
+Map::Map(MapBuilder builder)
+ : height(builder.get_height()), width(builder.get_width()), maxIndex(height * width - 1),
+ number_chargers(builder.get_chargers()), number_diamonds(builder.get_diamonds()), number_monsters(builder.get_monsters())
+ {
     // Premiere ligne, celle du haut
     for (int i = 0; i < width; i++)
     {
@@ -84,4 +87,19 @@ int Map::put(int x, int y, GameElement element)
     }
     matrix[y*get_width() + x].set_element(element);
     return 0;
+}
+
+int Map::get_number_monsters() const
+{
+    return number_monsters;
+}
+
+int Map::get_number_diamonds() const
+{
+    return number_diamonds;
+}
+
+int Map::get_number_chargers() const
+{
+    return number_chargers;
 }
