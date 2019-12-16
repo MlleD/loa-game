@@ -7,6 +7,7 @@
 #include "Ground.hpp"
 #include "Door.hpp"
 
+#include "MapBuilder.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -24,13 +25,30 @@ int main(int argc, char const *argv[])
         std::cerr << "Les arguments hauteur et largeur du plateau doivent être supérieurs à 3" << std::endl;
         return -2;
     }
-    Map map(height, width);
+    MapBuilder builder(height, width);
+
+    std::cout << "Bienvenue dans le builder de map " << height << " x " << width << std::endl;
+    std::cout << "Combien de monstres voulez-vous sur la map ?";
+    
+    std::string line;
+    std::getline(std::cin, line);
+    builder.set_monsters(atoi(line.c_str()));
+    
+    std::cout << "Combien de diamants (et donc de portes de sortie) voulez-vous ?" << std::endl;
+    std::getline(std::cin, line);
+    builder.set_diamonds(atoi(line.c_str()));
+
+    std::cout << "Combien de chargeurs voulez-vous sur la map ?" << std::endl;
+    std::getline(std::cin, line);
+    builder.set_chargers(atoi(line.c_str()));
+
+    Map map(builder);
     map.print();
 
-    MapLoader::save(map, "plateau2.board");
+    //MapLoader::save(map, "plateau2.board");
 
-    Map m = MapLoader::get_map("plateau2.board");
-    m.print();
+    //Map m = MapLoader::get_map("plateau2.board");
+    //m.print();
 
 
     return 0;
