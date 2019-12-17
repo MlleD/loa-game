@@ -1,7 +1,11 @@
 #include "Case.hpp"
 #include "MapBuilder.hpp"
+#include "Player.hpp"
+#include "Monster.hpp"
 #include <vector>
 
+#ifndef MAP_H
+#define MAP_H
 typedef std::vector<Case> Board;
 
 class Map
@@ -28,3 +32,4 @@ public:
 
     void print();
 };
+#endif

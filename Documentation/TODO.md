@@ -19,9 +19,7 @@ Game Player (gp) : jouer sur un ensemble de plateaux
 - Déplacement du personnage, à l'aide du clavier
 - But du jeu : récupérer un max de trésors
 - Automatisation des monstres
-- Ajout de l'entité joueur
 - Ajout de l'entité diam
-- Ajout de l'entité monstre
 - Ajout de l'entité chargeur
 - Déroulement d'un tour de jeu : 
 1. joueur : choix de l'action à faire : déplacement sur une autre case, rester sur place, se téléporter
@@ -40,3 +38,5 @@ Edition de map
     - nombre de monstres
     - nombre de diamants et donc de portes
     - nombre de chargeurs
+- Ajout de l'entité joueur
+- Ajout de l'entité monstre

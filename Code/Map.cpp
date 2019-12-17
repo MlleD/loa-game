@@ -5,7 +5,10 @@
 #include "Ground.hpp"
 #include "Door.hpp"
 #include "Map.hpp"
-
+#include "Creature.hpp"
+#include "Player.hpp"
+#include "Monster.hpp"
+#include "GameManager.hpp"
 
 Map::Map(MapBuilder builder)
  : height(builder.get_height()), width(builder.get_width()), maxIndex(height * width - 1),
@@ -42,6 +45,14 @@ Map::Map(MapBuilder builder)
     // Ajout d'une porte fermee, en bas a droite
     Door d;
     matrix[maxIndex - 1] = Case(d);
+
+    //Ajout du joueur en haut à droite
+    Player p;
+    matrix[2 * width - 2] = Case(p);
+    //Ajout d'un monstre en haut à gauche
+    Monster m;
+    matrix[width + 1] = Case(m);
+    
 }
 
 void Map::print()

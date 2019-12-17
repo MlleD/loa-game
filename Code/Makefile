@@ -1,9 +1,9 @@
 CPP = g++ --std=c++11 -Wall
 ALL = gp gc 
 all: $(ALL)
-gc : MapEditor.o Map.o Wall.o Case.o GameStructure.o GameElement.o Door.o Ground.o MapLoader.o MapBuilder.o
+gc : MapEditor.o Map.o Wall.o Case.o GameStructure.o GameElement.o Door.o Ground.o MapLoader.o MapBuilder.o Monster.o Player.o
 	$(CPP) -o $@ $^
-gp : GameManager.o Map.o Wall.o Case.o GameStructure.o GameElement.o Door.o Ground.o MapLoader.o MapBuilder.o
+gp : GameManager.o Map.o Wall.o Case.o GameStructure.o GameElement.o Door.o Ground.o MapLoader.o MapBuilder.o Monster.o Player.o
 	$(CPP) -o $@ $^
 MapEditor.o : MapEditor.cpp MapEditor.hpp MapLoader.hpp
 GameManager.o : GameManager.cpp GameManager.hpp Map.hpp MapLoader.hpp MapBuilder.hpp
@@ -16,5 +16,7 @@ Wall.o : Wall.cpp Wall.hpp GameStructure.hpp
 Case.o : Case.cpp Case.hpp
 Door.o : Door.cpp Door.hpp
 Ground.o : Ground.cpp Ground.hpp
+Monster.o : Monster.cpp Monster.hpp
+Player.o : Player.cpp Player.hpp
 clean :
 	rm -rf *.o $(ALL)
