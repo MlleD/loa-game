@@ -1,7 +1,10 @@
 #include "GameElement.hpp"
 #include <iostream>
 
-GameElement::GameElement() {}
+GameElement::GameElement() {
+    pos.set_x(0);
+    pos.set_y(0);
+}
 
 GameElement::GameElement(Position& p)
 {
@@ -11,6 +14,8 @@ GameElement::GameElement(Position& p)
 
 GameElement::GameElement(const GameElement& ge)
 {
+    pos.set_x(0);
+    pos.set_y(0);
     s = ge.s;
 }
 void GameElement::print()
@@ -21,6 +26,11 @@ void GameElement::print()
 Symbole GameElement::get_symbole()
 {
     return s;
+}
+
+Position& GameElement::get_position()
+{
+    return pos;
 }
 
 Position::Position() : x(0), y(0) {}

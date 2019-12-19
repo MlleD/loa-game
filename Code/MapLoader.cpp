@@ -32,6 +32,16 @@ GameElement MapLoader::get_game_element (char symbol)
         Door d;
         return d;
     }
+    if ( symbol == ('J') )
+    {
+        Player j;
+        return j;
+    }
+    if ( symbol == ('s') )
+    {
+        Monster m;
+        return m;
+    }
     throw invalid_argument(string("Unknow symbol : ") + symbol);
 }
 
@@ -70,6 +80,7 @@ Map MapLoader::get_map (string file_path)
 
         MapBuilder builder(height, width);
         Map map(builder);
+        //Parcours des symboles pour définir les éléments de la map
         int y = 0;
         while ( y < height && getline (file, line) )
         {
@@ -82,6 +93,7 @@ Map MapLoader::get_map (string file_path)
                 try
                 {
                     GameElement elt = get_game_element(line[x]);
+                    elt.get_position();
                     map.put(x,y,elt);
                 }
                 catch(exception const& e)
