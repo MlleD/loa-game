@@ -45,14 +45,14 @@ GameElement MapLoader::get_game_element (char symbol)
     throw invalid_argument(string("Unknow symbol : ") + symbol);
 }
 
-Map MapLoader::get_map (string file_path)
+Map MapLoader::get_map (const string file_path)
 {
-    int width = 0;
-    int height = 0;
     ifstream file (file_path);
-    string line;
     if (file.is_open())
     {
+        int width = 0;
+        int height = 0;
+        string line;
         //on récupère la largeur du plateau dans la première ligne
         if ( getline (file, line) )
         {
@@ -118,9 +118,8 @@ Map MapLoader::get_map (string file_path)
     }
 }
 
-void MapLoader::save(Map map, string file_path)
+void MapLoader::save(const Map map, const string file_path)
 {
-
     remove(file_path.c_str());
     ofstream file (file_path);
     if (file.is_open())

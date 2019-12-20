@@ -13,7 +13,7 @@ void Case::print()
 
 Case::~Case() {}
 
-GameElement Case::get_element()
+GameElement Case::get_element() const
 {
     return element;
 }

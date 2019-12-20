@@ -14,7 +14,7 @@ public:
     Case(GameElement &e);
     void print();
     ~Case();
-    GameElement get_element();
+    GameElement get_element() const;
     void set_element(GameElement element);
 };
 #endif

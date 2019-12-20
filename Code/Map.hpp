@@ -3,6 +3,7 @@
 #include "Player.hpp"
 #include "Monster.hpp"
 #include <vector>
+#include <string>
 
 #ifndef MAP_H
 #define MAP_H
@@ -11,6 +12,7 @@ typedef std::vector<Case> Board;
 class Map
 {
 private:
+    std::string file_path;
     const int height;
     const int width;
     const int maxIndex;
@@ -27,8 +29,10 @@ public:
     int get_number_monsters() const;
     int get_number_diamonds() const;
     int get_number_chargers() const;
-    GameElement get(int x, int y);
-    int put(int x, int y, GameElement element);
+    GameElement get(int x, int y) const;
+    void put(int x, int y, GameElement element);
+    void set_file_path(std::string file_path);
+    std::string get_file_path();
 
     void print();
 };
