@@ -21,13 +21,13 @@ static Map open_board(const string board_file_path)
             cout << e.what() << endl;
             cout << "Creation d'une nouvelle map." << endl;
             int height = 0;
-            while (height >= MIN_HEIGHT && height <= MAX_HEIGHT)
+            while (height < MIN_HEIGHT || height > MAX_HEIGHT)
             {
                 cout << "Choisissez la hauteur du plateau entre " << MIN_HEIGHT << " et " << MAX_HEIGHT << endl;
                 cin >> height;
             }
             int width = 0;
-            while (width >= MIN_WIDHT && width <= MAX_WIDHT)
+            while (width < MIN_WIDHT || width > MAX_WIDHT)
             {
                 cout << "Choisissez la largeur du plateau entre " << MIN_WIDHT << " et " << MAX_WIDHT << endl;
                 cin >> width;
