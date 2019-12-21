@@ -23,8 +23,7 @@ Game GameLoader::get_game(const std::string file_path)
         }
         else
         {
-            //empty file
-            return Game();
+            throw runtime_error(string("Empty file"));
         }
 
         int i = map_number;
@@ -85,9 +84,7 @@ Game GameLoader::get_game(const std::string file_path)
     }
     else
     {
-        //throw runtime_error("Unable to open the file "+file_path);
-        //on génère un jeu vide (avec aucune map)
-        return Game();
+        throw runtime_error("Unable to open the file "+file_path);
     }
 }
 

@@ -65,6 +65,11 @@ Map MapLoader::get_map (const string file_path)
                 throw;
             }
         }
+        else
+        {
+            throw runtime_error("Empty file");
+        }
+        
         //on récupère la hauteur du plateau dans la seconde ligne
         if ( getline (file, line) )
         {
@@ -76,6 +81,10 @@ Map MapLoader::get_map (const string file_path)
             {
                 throw;
             }
+        }
+        else
+        {
+            throw runtime_error("Missing : board height");
         }
 
         MapBuilder builder(height, width);
