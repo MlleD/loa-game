@@ -93,7 +93,12 @@ Map MapLoader::get_map (const string file_path)
         int y = 0;
         while ( y < height && getline (file, line) )
         {
-            if ( line.length() != width )
+            if (line.at(line.size()-1) == '\r')
+            {
+                line = line.substr(0,line.size()-1);
+            }
+            
+            else if ( line.length() != width )
             {
                 throw runtime_error(string("Wrong number of symbols in line ") + to_string(y) +
                     string(" found ") + to_string(line.length()) + string(" symbols but ") + to_string(width) + string(" was expected.") );
