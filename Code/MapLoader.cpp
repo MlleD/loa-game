@@ -95,7 +95,8 @@ Map MapLoader::get_map (const string file_path)
         {
             if ( line.length() != width )
             {
-                throw runtime_error("Wrong number of symbols in a line");
+                throw runtime_error(string("Wrong number of symbols in line ") + to_string(y) +
+                    string(" found ") + to_string(line.length()) + string(" symbols but ") + to_string(width) + string(" was expected.") );
             }
             for (int x = 0; x < line.length(); x++)
             {

@@ -42,7 +42,6 @@ Map::Map(MapBuilder builder)
         Wall w;
         matrix.push_back(Case(w));
     }
-    
 }
 
 void Map::print()
