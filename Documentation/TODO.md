@@ -1,6 +1,12 @@
 ## TO DO List
-Game Creator (gc) : appli de conception de plateaux de jeu
-Game Player (gp) : jouer sur un ensemble de plateaux
+-Ajout des classes Teleporter et Diamonds
+-Map : modifier la generation de la map afin qu'elle ne mette que des mur sur les bordures de la map
+-Game Creator (gc) : reste boucle interactive pour modifier une map
+-Game Player (gp) : - ouverture des fichiers en argument
+                    - fonction membre pour map : move(x,y,Position)
+                    - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
+                                                        move_to(Position)
+                    - boucle de jeu
 
 ### Liste des choses à faire
 - Lorsqu'une tâche est faite, merci de bien vouloir le notifier dans ce document
@@ -40,3 +46,8 @@ Edition de map
     - nombre de chargeurs
 - Ajout de l'entité joueur
 - Ajout de l'entité monstre
+- MapLoader pour charger/sauvegarder les fichiers .board
+- GameLoader pour charger/sauvegarder les fichiers .game
+- MapEditor :   -ouverture des fichier en parametre
+                -creation/edition de fichier.game
+
