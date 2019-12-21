@@ -42,18 +42,6 @@ Map::Map(MapBuilder builder)
         Wall w;
         matrix.push_back(Case(w));
     }
-
-    // Ajout d'une porte fermee, en bas a droite
-    Door d;
-    matrix[maxIndex - 1] = Case(d);
-
-    //Ajout du joueur en haut à droite
-    Player p;
-    matrix[2 * width - 2] = Case(p);
-    //Ajout d'un monstre en haut à gauche
-    Monster m;
-    matrix[width + 1] = Case(m);
-    
 }
 
 void Map::print()

@@ -1,6 +1,5 @@
 ## TO DO List
 -Ajout des classes Teleporter et Diamonds
--Map : modifier la generation de la map afin qu'elle ne mette que des mur sur les bordures de la map
 -Game Creator (gc) : reste boucle interactive pour modifier une map
 -Game Player (gp) : - ouverture des fichiers en argument
                     - fonction membre pour map : move(x,y,Position)
@@ -50,4 +49,5 @@ Edition de map
 - GameLoader pour charger/sauvegarder les fichiers .game
 - MapEditor :   -ouverture des fichier en parametre
                 -creation/edition de fichier.game
+- Map : modifier la generation de la map afin qu'elle ne mette que des mur sur les bordures de la map
 
