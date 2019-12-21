@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 #include "Wall.hpp"
 #include "Case.hpp"
@@ -67,26 +68,22 @@ int Map::get_width() const
     return width;
 }
 
-GameElement Map::get(int x, int y)
+GameElement Map::get(int x, int y) const
 {
     if (x >= Map::get_width() || y >= Map::get_height())
     {
-        std::cout << "Index out of range" << std::endl;
-        //todo: generate an Exception
-        return GameElement();
+        throw std::invalid_argument(std::string("Index out of range"));
     }
-    return matrix[y * Map::get_width() + x].get_element();
+    return matrix.at(y * Map::get_width() + x).get_element();
 }
 
-int Map::put(int x, int y, GameElement element)
+void Map::put(int x, int y, GameElement element)
 {
     if (x >= Map::get_width() || y >= Map::get_height())
     {
-        std::cout << "Index out of range" << std::endl;
-        return -1;
+        throw std::invalid_argument(std::string("Index out of range"));
     }
     matrix[y*get_width() + x].set_element(element);
-    return 0;
 }
 
 int Map::get_number_monsters() const
@@ -102,4 +99,15 @@ int Map::get_number_diamonds() const
 int Map::get_number_chargers() const
 {
     return number_chargers;
+}
+
+
+void Map::set_file_path(std::string file_path)
+{
+    Map::file_path = file_path;
+}
+
+std::string Map::get_file_path()
+{
+    return Map::file_path;
 }
