@@ -31,6 +31,10 @@ Game GameLoader::get_game(const std::string file_path)
         //on lit et génère les maps
         while ( getline(file, line) && i > 0 )
         {
+            if (line.at(line.size()-1) == '\r')// sous windows
+            {
+                line = line.substr(0,line.size()-1);
+            }
             try 
             {
                 Map map = MapLoader::get_map(line);

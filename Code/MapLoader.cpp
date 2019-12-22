@@ -93,7 +93,7 @@ Map MapLoader::get_map (const string file_path)
         int y = 0;
         while ( y < height && getline (file, line) )
         {
-            if (line.at(line.size()-1) == '\r')
+            if (line.at(line.size()-1) == '\r')// sous windows
             {
                 line = line.substr(0,line.size()-1);
             }
