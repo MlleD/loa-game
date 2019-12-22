@@ -1,12 +1,3 @@
-## TO DO List
--Ajout des classes Teleporter et Diamonds
--Game Creator (gc) : reste boucle interactive pour modifier une map
--Game Player (gp) : - ouverture des fichiers en argument
-                    - fonction membre pour map : move(x,y,Position)
-                    - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
-                                                        move_to(Position)
-                    - boucle de jeu
-
 ### Liste des choses à faire
 - Lorsqu'une tâche est faite, merci de bien vouloir le notifier dans ce document
 - Tenir la liste à jour
@@ -51,3 +42,11 @@ Edition de map
                 -creation/edition de fichier.game
 - Map : modifier la generation de la map afin qu'elle ne mette que des mur sur les bordures de la map
 
+## TO DO List
+-Ajout des classes Teleporter et Diamonds
+-Game Creator (gc) : reste boucle interactive pour modifier une map
+-Game Player (gp) : - ouverture des fichiers en argument
+                    - fonction membre pour map : move(x,y,Position)
+                    - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
+                                                        move_to(Position)
+                    - boucle de jeu
