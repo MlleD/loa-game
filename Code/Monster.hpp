@@ -7,5 +7,7 @@ class Monster : public Creature
     private:
     public:
         Monster();
+        ~Monster();
+        Position& wich_move(const Map map);
 };
 #endif

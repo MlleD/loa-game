@@ -1,15 +1,7 @@
+#include "Map.hpp"
+
 #include <iostream>
 #include <stdexcept>
-
-#include "Wall.hpp"
-#include "Case.hpp"
-#include "Ground.hpp"
-#include "Door.hpp"
-#include "Map.hpp"
-#include "Creature.hpp"
-#include "Player.hpp"
-#include "Monster.hpp"
-#include "GameManager.hpp"
 
 Map::Map(MapBuilder builder)
  : height(builder.get_height()), width(builder.get_width()), maxIndex(height * width - 1),
@@ -18,29 +10,37 @@ Map::Map(MapBuilder builder)
     // Premiere ligne, celle du haut
     for (int i = 0; i < width; i++)
     {
-        Wall w;
+        Wall *w = new Wall();
         matrix.push_back(Case(w));
     }
     
     // Lignes intermediaires
     for (int i = 1; i < height - 1; i++)
     {
-        Wall w1;
+        Wall *w1 = new Wall();
         matrix.push_back(w1);
         for (int j = 1; j < width - 1; j++)
         {
-            Ground g;
+            Ground *g = new Ground();
             matrix.push_back(Case(g));
         }
-        Wall w2;
+        Wall *w2 = new Wall();
         matrix.push_back(Case(w2));
     }
 
     //Ligne du bas
     for (int i = 0; i < width; i++)
     {
-        Wall w;
+        Wall *w = new Wall();
         matrix.push_back(Case(w));
+    }
+}
+
+Map::~Map()
+{
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        delete matrix.at(i).get_element();
     }
 }
 
@@ -67,7 +67,7 @@ int Map::get_width() const
     return width;
 }
 
-GameElement Map::get(int x, int y) const
+GameElement* Map::get(int x, int y) const
 {
     if (x >= Map::get_width() || y >= Map::get_height())
     {
@@ -76,13 +76,14 @@ GameElement Map::get(int x, int y) const
     return matrix.at(y * Map::get_width() + x).get_element();
 }
 
-void Map::put(int x, int y, GameElement element)
+void Map::put(int x, int y, GameElement* element)
 {
     if (x >= Map::get_width() || y >= Map::get_height())
     {
         throw std::invalid_argument(std::string("Index out of range"));
     }
-    matrix[y*get_width() + x].set_element(element);
+    delete matrix.at(y*get_width() + x).get_element();
+    matrix.at(y*get_width() + x).set_element(element);
 }
 
 int Map::get_number_monsters() const

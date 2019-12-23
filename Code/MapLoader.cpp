@@ -1,51 +1,39 @@
 #include "MapLoader.hpp"
-#include "MapBuilder.hpp"
-#include <fstream>
-#include <stdexcept>
-
-#include "Wall.hpp"
-#include "Ground.hpp"
-#include "Door.hpp"
 
 using namespace std;
 
-GameElement MapLoader::get_game_element (char symbol)
+GameElement* MapLoader::get_game_element (char symbol)
 {
     if ( symbol == (' ') )
     {
-        Ground g;
-        return g;
+        return new Ground();
     }
     if ( symbol == ('X') )
     {
-        Wall w;
-        return w;
+        return new Wall();
     }
     if ( symbol == ('+') )
     {
-        Door door;
-        door.open();
+        Door *door = new Door();
+        door->open();
         return door;
     }
     if ( symbol == ('-') )
     {
-        Door d;
-        return d;
+        return new Door();
     }
     if ( symbol == ('J') )
     {
-        Player j;
-        return j;
+        return new Player();
     }
     if ( symbol == ('s') )
     {
-        Monster m;
-        return m;
+        return new Monster();
     }
     throw invalid_argument(string("Unknow symbol : ") + symbol);
 }
 
-Map MapLoader::get_map (const string file_path)
+Map* MapLoader::get_map (const string file_path)
 {
     ifstream file (file_path);
     if (file.is_open())
@@ -88,7 +76,7 @@ Map MapLoader::get_map (const string file_path)
         }
 
         MapBuilder builder(height, width);
-        Map map(builder);
+        Map *map = new Map(builder);
         //Parcours des symboles pour définir les éléments de la map
         int y = 0;
         while ( y < height && getline (file, line) )
@@ -107,9 +95,9 @@ Map MapLoader::get_map (const string file_path)
             {
                 try
                 {
-                    GameElement elt = get_game_element(line[x]);
-                    elt.get_position();
-                    map.put(x,y,elt);
+                    GameElement *elt = get_game_element(line[x]);
+                    elt->set_position(x,y);
+                    map->put(x,y,elt);
                 }
                 catch(exception const& e)
                 {
@@ -147,7 +135,7 @@ void MapLoader::save(const Map map, const string file_path)
         {
             for (int x = 0 ; x < width ; x++)
             {
-                file << map.get(x,y).get_symbole();
+                file << map.get(x,y)->get_symbole();
             }
             file << endl;
         }

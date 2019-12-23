@@ -50,3 +50,6 @@ Edition de map
                     - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
                                                         move_to(Position)
                     - boucle de jeu
+- Renommage de GameStructure en StructureElement
+- Gros changements concernant l'utilisation des new et destructeur.
+- Optimisation des fuite mémoire

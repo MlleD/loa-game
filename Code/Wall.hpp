@@ -1,8 +1,13 @@
-#include "GameStructure.hpp"
+#ifndef WALL
+#define WALL
+#include "StructureElement.hpp"
 
-class Wall : public GameStructure
+class Wall : public StructureElement
 {
     private:
     public: 
-        Wall();     
+        Wall();
+        ~Wall();
+        bool is_accessible();
 };
+#endif

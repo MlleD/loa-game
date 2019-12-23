@@ -1,7 +1,9 @@
 #ifndef GAMELOADER
 #define GAMELOADER
+
 #include "MapLoader.hpp"
 #include "Game.hpp"
+
 #include <iostream>
 #include <string>
 #include <fstream>

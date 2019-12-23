@@ -5,10 +5,10 @@
 
 class Player : public Creature
 {
-    private:
-
     public:
         Player();
-
+        ~Player();
+        Position& wich_move(const Map map);
 };
+
 #endif

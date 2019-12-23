@@ -8,10 +8,10 @@ static const int MIN_WIDHT = 5;
 static const int MIN_HEIGHT = 5;
 
 //Charge le fichier board si existant 
-static Map open_board(const string board_file_path)
+static Map* open_board(const string board_file_path)
 {
     try {
-        Map map = MapLoader::get_map(board_file_path);
+        Map *map = MapLoader::get_map(board_file_path);
         return map;
     }
     catch(const std::exception& e)
@@ -32,7 +32,7 @@ static Map open_board(const string board_file_path)
                 cout << "Choisissez la largeur du plateau entre " << MIN_WIDHT << " et " << MAX_WIDHT << endl;
                 cin >> width;
             }
-            return Map(MapBuilder(height,width));
+            return new Map(MapBuilder(height,width));
         }
         else
         {
@@ -41,13 +41,13 @@ static Map open_board(const string board_file_path)
     }
 }
 
-static void map_edition(Map map)
+static void map_edition(Map &map)
 {
     map.print();
 }
 
 //création puis edition d'un fichier.game écrase l'ancien fichier si existant.
-static void game_edition(const string game_file_path, const vector<Map> maps)
+static void game_edition(const string game_file_path, const vector<Map*> maps)
 {
     cout << "Creation d'un nouveau jeu." << endl;
     cout << "L'ordre des maps est celui dans lequel elles ont été données en paramètre." << endl;
@@ -79,8 +79,9 @@ int main(int argc, char const *argv[])
         {
             try
             {
-                Map map = open_board(file_path);
-                map_edition(map);
+                Map *map = open_board(file_path);
+                map_edition(*map);
+                delete map;
             }
             catch(const exception& e)
             {
@@ -99,7 +100,7 @@ int main(int argc, char const *argv[])
         string game_file = string(argv[1]);
         if (game_file.substr(game_file.size() - 5, 5).compare(string(".game")) == 0)// -> on verifie si c'est bien un .game
         {
-            vector<Map> maps;
+            vector<Map*> maps;
             for (int i = 2; i < argc; i++)
             {
                 string file_path = string(argv[i]);
@@ -107,8 +108,8 @@ int main(int argc, char const *argv[])
                 {
                     try
                     {
-                        Map map = MapLoader::get_map(file_path);
-                        map.set_file_path(file_path);
+                        Map *map = MapLoader::get_map(file_path);
+                        map->set_file_path(file_path);
                         maps.push_back(map);
                     }
                     catch(const exception& e)
