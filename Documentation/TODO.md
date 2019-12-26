@@ -41,15 +41,15 @@ Edition de map
 - MapEditor :   -ouverture des fichier en parametre
                 -creation/edition de fichier.game
 - Map : modifier la generation de la map afin qu'elle ne mette que des mur sur les bordures de la map
+- Renommage de GameStructure en StructureElement
+- Gros changements concernant l'utilisation des new et destructeur.
+- Optimisation des fuite mémoire
 
 ## TO DO List
--Ajout des classes Teleporter et Diamonds
--Game Creator (gc) : reste boucle interactive pour modifier une map
--Game Player (gp) : - ouverture des fichiers en argument
+- Ajout des classes Teleporter et Diamonds
+- Game Creator (gc) : reste boucle interactive pour modifier une map
+- Game Player (gp) : - ouverture des fichiers en argument
                     - fonction membre pour map : move(x,y,Position)
                     - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
                                                         move_to(Position)
                     - boucle de jeu
-- Renommage de GameStructure en StructureElement
-- Gros changements concernant l'utilisation des new et destructeur.
-- Optimisation des fuite mémoire
