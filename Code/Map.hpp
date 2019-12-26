@@ -12,7 +12,7 @@
 #include <string>
 
 
-typedef std::vector<Case> Board;
+typedef std::vector<Case*> Board;
 
 class Map
 {

@@ -6,6 +6,7 @@ class Door : public StructureElement
         bool is_opened;
     public:
         Door();
+        Door(int x, int y);
         ~Door();
         bool is_accessible();
         void open();

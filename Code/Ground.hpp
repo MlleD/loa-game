@@ -8,6 +8,7 @@ class Ground : public StructureElement
         
     public:
         Ground();
+        Ground(int x, int y);
         ~Ground();
         bool is_accessible();
 };

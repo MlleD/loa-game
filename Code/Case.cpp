@@ -13,7 +13,7 @@ void Case::print()
 
 Case::~Case()
 {
-    //delete &element;
+    delete element;
 }
 
 GameElement* Case::get_element() const
@@ -23,5 +23,6 @@ GameElement* Case::get_element() const
 
 void Case::set_element(GameElement* element)
 {
+    delete Case::element;
     Case::element = element;
 }

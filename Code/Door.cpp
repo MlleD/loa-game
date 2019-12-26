@@ -6,6 +6,11 @@ Door::Door()
     close();
 }
 
+Door::Door(int x, int y) : StructureElement(x,y)
+{
+    close();
+}
+
 Door::~Door()
 {}
 

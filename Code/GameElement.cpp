@@ -2,16 +2,14 @@
 #include <iostream>
 
 GameElement::GameElement() {
-    std::cout << "constructing1 element " << std::endl;
     pos = new Position(-1,-1);
 }
-/*
-GameElement::GameElement(Position& p)
+GameElement::GameElement(int x, int y)
 {
-    std::cout << "constructing2 element " << std::endl;
-    pos = new Position(p.get_x(),p.get_y());
+    pos = new Position(x,y);
 }
-
+/*
+//constructeur de copie
 GameElement::GameElement(const GameElement& ge)
 {
     std::cout << "constructing3 element " << std::endl;
@@ -21,7 +19,7 @@ GameElement::GameElement(const GameElement& ge)
 */
 GameElement::~GameElement()
 {
-    std::cout << "delete element " << s << std::endl;
+    //std::cout << "delete element " << s << std::endl;
     delete pos;
 }
 void GameElement::print()
@@ -58,7 +56,7 @@ Position::Position(Position& pos) : Position(pos.get_x(), pos.get_y())
 
 Position::~Position() 
 {
-    std::cout << "delete position " << x << " " << y << std::endl ;
+    //std::cout << "delete position " << x << " " << y << std::endl ;
 }
 
 int Position::get_x() const

@@ -5,6 +5,11 @@ Player::Player() : Creature()
     s = 'J';
 }
 
+Player::Player(int x, int y) : Creature(x,y)
+{
+    s = 'J';
+}
+
 Player::~Player()
 {}
 

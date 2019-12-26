@@ -10,6 +10,7 @@ class Creature : public GameElement
 {
     public:
         Creature();
+        Creature(int x, int y);
         virtual ~Creature();
         int move_to(const Position& p);
         virtual Position& wich_move(const Map map) = 0;

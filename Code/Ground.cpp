@@ -5,6 +5,12 @@ Ground::Ground()
 {
     s = ' ';
 }
+
+Ground::Ground(int x, int y) : StructureElement(x,y)
+{
+    s = ' ';
+}
+
 Ground::~Ground()
 {}
 

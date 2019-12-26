@@ -4,6 +4,9 @@
 Creature::Creature()
 {}
 
+Creature::Creature(int x, int y) : GameElement(x,y)
+{}
+
 Creature::~Creature()
 {}
 

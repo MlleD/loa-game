@@ -9,6 +9,7 @@ class StructureElement : public GameElement
 private:
 public:
     StructureElement();
+    StructureElement(int x, int y);
     ~StructureElement();
     virtual bool is_accessible() = 0;
 };

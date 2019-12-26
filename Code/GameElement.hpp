@@ -36,8 +36,8 @@ protected:
     Position* pos;
 public:
     GameElement();
+    GameElement(int x, int y);
     /*
-    GameElement(Position& p);
     GameElement(const GameElement& ge);
     */
     virtual ~GameElement();

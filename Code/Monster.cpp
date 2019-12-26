@@ -5,6 +5,12 @@ Monster::Monster()
     s = 's';
 }
 
+
+Monster::Monster(int x, int y) : Creature(x,y)
+{
+    s = 's';
+}
+
 Monster::~Monster()
 {}
 
