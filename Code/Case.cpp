@@ -1,24 +1,28 @@
 #include "Case.hpp"
 #include <iostream>
 
-Case::Case(GameElement &e) : element(e)
+Case::Case(GameElement *e) : element(e)
 {}
 
 void Case::print()
 {
     std::cout << "[";
-    element.print();
+    element->print();
     std::cout << "]";
 }
 
-Case::~Case() {}
+Case::~Case()
+{
+    delete element;
+}
 
-GameElement Case::get_element() const
+GameElement* Case::get_element() const
 {
     return element;
 }
 
-void Case::set_element(GameElement element)
+void Case::set_element(GameElement* element)
 {
+    delete Case::element;
     Case::element = element;
 }

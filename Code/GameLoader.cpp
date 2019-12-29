@@ -27,14 +27,18 @@ Game GameLoader::get_game(const std::string file_path)
         }
 
         int i = map_number;
-        vector<Map> maps;
+        vector<Map*> maps;
         //on lit et génère les maps
         while ( getline(file, line) && i > 0 )
         {
+            if (line.at(line.size()-1) == '\r')// sous windows
+            {
+                line = line.substr(0,line.size()-1);
+            }
             try 
             {
-                Map map = MapLoader::get_map(line);
-                map.set_file_path(line);
+                Map *map = MapLoader::get_map(line);
+                map->set_file_path(line);
                 maps.push_back(map);
             }
             catch(const exception &e)
@@ -96,10 +100,10 @@ void GameLoader::save(const Game game, const std::string file_path)
     {
         int map_number = game.get_map_number();
         file << map_number << endl;
-        vector<Map> maps = game.get_maps();
+        vector<Map*> maps = game.get_maps();
         for (int i = 0 ; i < map_number ; i++)
         {
-            string file_path = maps.at(i).get_file_path();
+            string file_path = maps.at(i)->get_file_path();
             file << file_path << endl;
         }
         int current_map = game.get_current_map();

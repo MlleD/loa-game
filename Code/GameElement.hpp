@@ -10,6 +10,7 @@ class Position
         Position();
         Position(int x, int y);
         Position(Position& pos);
+        ~Position();
         int get_x() const;
         int get_y() const;
         void set_x(int x);
@@ -26,22 +27,24 @@ class Position
 #define GAMEELEMENT_H
 
 
-
 typedef char Symbole;
 
 class GameElement
 {
 protected:
     Symbole s;
-    Position pos;
+    Position* pos;
 public:
     GameElement();
-    GameElement(Position& p);
+    GameElement(int x, int y);
+    /*
     GameElement(const GameElement& ge);
-    //virtual void print() = 0;
+    */
+    virtual ~GameElement();
     void print();
-    Symbole get_symbole();
-    Position& get_position();
+    Symbole get_symbole() const;
+    Position& get_position() const;
+    void set_position(int x, int y);
 };
 
 #endif

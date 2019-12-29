@@ -2,35 +2,45 @@
 #include <iostream>
 
 GameElement::GameElement() {
-    pos.set_x(0);
-    pos.set_y(0);
+    pos = new Position(-1,-1);
 }
-
-GameElement::GameElement(Position& p)
+GameElement::GameElement(int x, int y)
 {
-    pos.set_x(p.get_x());
-    pos.set_y(p.get_y());
+    pos = new Position(x,y);
 }
-
+/*
+//constructeur de copie
 GameElement::GameElement(const GameElement& ge)
 {
-    pos.set_x(0);
-    pos.set_y(0);
+    std::cout << "constructing3 element " << std::endl;
+    GameElement(ge.get_position());
     s = ge.s;
+}
+*/
+GameElement::~GameElement()
+{
+    //std::cout << "delete element " << s << std::endl;
+    delete pos;
 }
 void GameElement::print()
 {
     std::cout << s;
 }
 
-Symbole GameElement::get_symbole()
+Symbole GameElement::get_symbole() const
 {
     return s;
 }
 
-Position& GameElement::get_position()
+Position& GameElement::get_position() const
 {
-    return pos;
+    return *pos;
+}
+
+void GameElement::set_position(int x, int y)
+{
+    pos->set_x(x);
+    pos->set_y(y);
 }
 
 Position::Position() : x(0), y(0) {}
@@ -43,6 +53,11 @@ Position::Position(int _x, int _y)
 
 Position::Position(Position& pos) : Position(pos.get_x(), pos.get_y())
 {}
+
+Position::~Position() 
+{
+    //std::cout << "delete position " << x << " " << y << std::endl ;
+}
 
 int Position::get_x() const
 {

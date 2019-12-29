@@ -1,16 +1,19 @@
 #include "Player.hpp"
 
-Player::Player()
+Player::Player() : Creature()
 {
-    s = 'J';/*
-    std::vector<Position> val;
-    val.push_back(Position(-1, -1));
-    val.push_back(Position(-1, 0));
-    val.push_back(Position(-1, 1));
-    val.push_back(Position(0, -1));
-    val.push_back(Position(0, 1));
-    val.push_back(Position(1, -1));
-    val.push_back(Position(1, 0));
-    val.push_back(Position(1, 1));
-    set_accessible_relative_positions(val);*/
-};
+    s = 'J';
+}
+
+Player::Player(int x, int y) : Creature(x,y)
+{
+    s = 'J';
+}
+
+Player::~Player()
+{}
+
+Position& Player::wich_move(const Map map)
+{
+    return *pos;
+}

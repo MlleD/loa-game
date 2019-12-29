@@ -3,15 +3,15 @@
 
 Game::Game()
 {
-    Game(0,std::vector<Map>());
+    Game(0,std::vector<Map*>());
 }
 
-Game::Game(int map_number, std::vector<Map> maps)
+Game::Game(int map_number, std::vector<Map*> maps)
 {
     Game(map_number,maps,1,0);
 }
 
-Game::Game(int map_number, std::vector<Map> maps, int current_map, int teleport_number)
+Game::Game(int map_number, std::vector<Map*> maps, int current_map, int teleport_number)
 {
     Game::set_map_number(map_number);
     Game::set_maps(maps);
@@ -49,12 +49,12 @@ void Game::set_teleport_number(int teleport_number)
     Game::teleport_number = teleport_number;
 }
 
-std::vector<Map> Game::get_maps() const
+std::vector<Map*> Game::get_maps() const
 {
     return Game::maps;
 }
 
-void Game::set_maps(std::vector<Map> maps)
+void Game::set_maps(std::vector<Map*> maps)
 {
     for (auto iter = std::begin(maps); iter != std::end(maps); ++iter)
     {

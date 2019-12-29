@@ -8,13 +8,13 @@
 class Case
 {
 private:
-    GameElement element;
+    GameElement* element;
 
 public:
-    Case(GameElement &e);
-    void print();
+    Case(GameElement *e);
     ~Case();
-    GameElement get_element() const;
-    void set_element(GameElement element);
+    void print();
+    GameElement* get_element() const;
+    void set_element(GameElement* element);
 };
 #endif
