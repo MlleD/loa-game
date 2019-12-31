@@ -3,22 +3,12 @@
 #include <cstdlib>
 #include "MapBuilder.hpp"
 
-int main(int argc, char const *argv[])
+MapBuilder map_generate()
 {
-    const int NB_ARGS = 3;
-    if (argc != NB_ARGS)
-    {
-        std::cerr << (NB_ARGS - 1) << " arguments (hauteur, largeur du plateau) sont nécessaires" << std::endl;
-        return -1;
-    }
-    int height = atoi(argv[1]);
-    int width = atoi(argv[2]);
 
-    if (height < 3 || width < 3)
-    {
-        std::cerr << "Les arguments hauteur et largeur du plateau doivent être supérieurs à 3" << std::endl;
-        return -2;
-    }
+    int height = 5;
+    int width = 6;
+
     MapBuilder builder(height, width);
 
     std::cout << "Bienvenue dans le builder de map " << height << " x " << width << std::endl;
@@ -35,9 +25,45 @@ int main(int argc, char const *argv[])
     std::cout << "Combien de chargeurs voulez-vous sur la map ?" << std::endl;
     std::getline(std::cin, line);
     builder.set_chargers(atoi(line.c_str()));
+    return builder;
 
-    Map map(builder);
-    map.print();
+}
+
+/*
+ * compare le format (par exemple, l'extension de fichier.board)
+ * d'une chaîne str à une extension passée en paramètre
+*/
+bool is_format(std::string str, std::string format) 
+{
+    int format_size = format.size();
+    return str.substr(str.size() - format_size, format_size).compare(format) == 0;
+}
+
+int main(int argc, char const *argv[])
+{
+    const int NB_ARGS = 2;
+    if (argc != NB_ARGS)
+    {
+        std::cerr << (NB_ARGS - 1) << " argument est nécessaire : fichier .board ou .game " << std::endl;
+        return -1;
+    }
+    else
+    {
+        if (is_format(argv[1], ".board"))
+        {
+            Map* m = MapLoader::get_map(argv[1]);
+            m->print();
+        }
+        else
+        {
+            std::cerr << "Argument attendu : nom de fichier suivi de l'extension .board" << std::endl;
+            return EXIT_FAILURE;
+        }
+    }
+
+    //MapBuilder builder = map_generate();
+    //Map map(builder);
+    //map.print();
 
     //MapLoader::save(map, "plateau2.board");
 
