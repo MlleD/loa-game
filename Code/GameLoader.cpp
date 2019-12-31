@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Game GameLoader::get_game(const std::string file_path)
+Game* GameLoader::get_game(const std::string file_path)
 {
     ifstream file (file_path);
     if (file.is_open())
@@ -29,8 +29,12 @@ Game GameLoader::get_game(const std::string file_path)
         int i = map_number;
         vector<Map*> maps;
         //on lit et génère les maps
-        while ( getline(file, line) && i > 0 )
+        while ( i > 0 )
         {
+            if (!getline(file, line))
+            {
+                throw runtime_error(string("Wrong number of map"));
+            }
             if (line.at(line.size()-1) == '\r')// sous windows
             {
                 line = line.substr(0,line.size()-1);
@@ -45,6 +49,7 @@ Game GameLoader::get_game(const std::string file_path)
             {
                 throw;
             }
+            i--;
         }
         if (i != 0)
         {
@@ -84,7 +89,7 @@ Game GameLoader::get_game(const std::string file_path)
         {
             throw runtime_error(string("Missing : teleport number of the player"));
         }
-        return Game(map_number,maps,current_map,teleport_number);
+        return new Game(map_number,maps,current_map,teleport_number);
     }
     else
     {
@@ -92,23 +97,23 @@ Game GameLoader::get_game(const std::string file_path)
     }
 }
 
-void GameLoader::save(const Game game, const std::string file_path)
+void GameLoader::save(const Game* game, const std::string file_path)
 {
     remove(file_path.c_str());
     ofstream file (file_path);
     if (file.is_open())
     {
-        int map_number = game.get_map_number();
+        int map_number = game->get_map_number();
         file << map_number << endl;
-        vector<Map*> maps = game.get_maps();
+        vector<Map*> maps = game->get_maps();
         for (int i = 0 ; i < map_number ; i++)
         {
             string file_path = maps.at(i)->get_file_path();
             file << file_path << endl;
         }
-        int current_map = game.get_current_map();
+        int current_map = game->get_current_map();
         file << current_map << endl;
-        int teleport_number = game.get_teleport_number();
+        int teleport_number = game->get_teleport_number();
         file << teleport_number << endl;
         file.close();
     }

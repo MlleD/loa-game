@@ -37,6 +37,7 @@ public:
     int get_number_chargers() const;
     GameElement* get(int x, int y) const;
     void put(int x, int y, GameElement* element);
+    void put(Position pos, GameElement* element);
     void set_file_path(std::string file_path);
     std::string get_file_path();
     void print();

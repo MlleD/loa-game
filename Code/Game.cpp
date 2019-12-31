@@ -19,6 +19,14 @@ Game::Game(int map_number, std::vector<Map*> maps, int current_map, int teleport
     Game::set_teleport_number(teleport_number);
 }
 
+Game::~Game()
+{
+    for (auto iter = maps.begin(); iter < maps.end() ; ++iter)
+    {
+        delete *iter;
+    }
+}
+
 int Game::get_map_number() const
 {
     return Game::map_number;

@@ -59,7 +59,7 @@ static void game_edition(const string game_file_path, const vector<Map*> maps)
         cout << "Combien de teleport aura le joueur au début de la partie ?" << endl;
         cin >> teleport_number;
     }
-    Game game(map_number,maps,1,teleport_number);
+    Game* game = new Game(map_number,maps,1,teleport_number);
     GameLoader::save(game,game_file_path);
     cout << "Jeu sauvegardé avec succès dans le fichier " << game_file_path << endl;
 }
