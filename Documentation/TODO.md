@@ -48,8 +48,10 @@ Edition de map
 ## TO DO List
 - Ajout des classes Teleporter et Diamonds
 - Game Creator (gc) : reste boucle interactive pour modifier une map
-- Game Player (gp) : - ouverture des fichiers en argument
-                    - fonction membre pour map : move(x,y,Position)
+- Game Player (gp) : - fonction membre pour map : move(x,y,Position)
                     - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
                                                         move_to(Position)
                     - boucle de jeu
+
+## Fait
+- Game Player (gp) : ouverture des fichiers en argument
