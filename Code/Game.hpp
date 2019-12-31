@@ -15,6 +15,7 @@ public:
     Game();
     Game(int map_number, std::vector<Map*> maps);
     Game(int map_number, std::vector<Map*> maps, int current_map, int teleport_number);
+    ~Game();
     int get_map_number() const;
     void set_map_number(int map_number);
     int get_current_map() const;

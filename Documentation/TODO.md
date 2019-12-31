@@ -44,14 +44,21 @@ Edition de map
 - Renommage de GameStructure en StructureElement
 - Gros changements concernant l'utilisation des new et destructeur.
 - Optimisation des fuite mémoire
+- Game Player (gp) :- ouverture des fichiers en argument
+                    - fonction membre pour map : move(x,y,Position)
+                    - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
+                                                        move_to(Position)
+                    
 
 ## TO DO List
 - Ajout des classes Teleporter et Diamonds
 - Game Creator (gc) : reste boucle interactive pour modifier une map
-- Game Player (gp) : - fonction membre pour map : move(x,y,Position)
-                    - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
+- Game Player (gp) : 
+    - fonction membre pour map : move(x,y,Position)
+    - fonctions membre pour Creature : wich_position(x,y,vector<Position>)
                                                         move_to(Position)
-                    - boucle de jeu
+    - boucle de jeu
+    - Modifier la structure des fichiers .board, MapLoader, Map afin de dissocier les GameElement en Creature, StuctureElement et InteractiveElement
 
 ## Fait
 - Game Player (gp) : ouverture des fichiers en argument

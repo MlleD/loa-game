@@ -13,8 +13,8 @@
 class GameLoader
 {
 public:
-    static Game get_game(const std::string file_path);
-    static void save(const Game game, const std::string file_path);
+    static Game* get_game(const std::string file_path);
+    static void save(const Game* game, const std::string file_path);
 };
 
 

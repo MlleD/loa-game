@@ -13,7 +13,7 @@ class Creature : public GameElement
         Creature(int x, int y);
         virtual ~Creature();
         int move_to(const Position& p);
-        virtual Position& wich_move(const Map map) = 0;
+        virtual Position& wich_move(const Map* map);
 };
 
 #endif

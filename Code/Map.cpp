@@ -84,6 +84,10 @@ void Map::put(int x, int y, GameElement* element)
     }
     matrix.at(y*get_width() + x)->set_element(element);
 }
+void Map::put(Position pos, GameElement* element)
+{
+    Map::put(pos.get_x(),pos.get_y(),element);
+}
 
 int Map::get_number_monsters() const
 {

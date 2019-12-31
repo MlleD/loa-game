@@ -13,7 +13,7 @@ Player::Player(int x, int y) : Creature(x,y)
 Player::~Player()
 {}
 
-Position& Player::wich_move(const Map map)
+Position& Player::wich_move(const Map* map)
 {
     return *pos;
 }
