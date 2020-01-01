@@ -7,6 +7,7 @@
 #include "Wall.hpp"
 #include "Ground.hpp"
 #include "Door.hpp"
+#include "Creature.hpp"
 
 #include <vector>
 #include <string>
@@ -35,10 +36,17 @@ public:
     int get_number_monsters() const;
     int get_number_diamonds() const;
     int get_number_chargers() const;
-    GameElement* get(int x, int y) const;
-    void put(int x, int y, GameElement* element);
-    void put(Position pos, GameElement* element);
+    StructureElement* get_structure(int x, int y) const;
+    void set_structure(int x, int y, StructureElement* element);
+    void set_structure(Position* pos, StructureElement* element);
+    InteractiveElement* get_interactive(int x, int y) const;
+    void set_interactive(int x, int y, InteractiveElement* element);
+    void set_interactive(Position* pos, InteractiveElement* element);
+    Creature* get_creature(int x, int y) const;
+    void set_creature(int x, int y, Creature* element);
+    void set_creature(Position* pos, Creature* element);
     void set_file_path(std::string file_path);
+    void move_creature(Position* c_pos, Position* destination);
     std::string get_file_path();
     void print();
 };

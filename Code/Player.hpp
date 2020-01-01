@@ -9,7 +9,7 @@ class Player : public Creature
         Player();
         Player(int x, int y);
         ~Player();
-        Position& wich_move(const Map* map);
+        Position* wich_move(const Game* game);
 };
 
 #endif

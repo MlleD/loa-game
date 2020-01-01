@@ -7,9 +7,10 @@ StructureElement::StructureElement()
 StructureElement::StructureElement(int x, int y) : GameElement(x,y)
 {}
 
-StructureElement::~StructureElement() {}
+StructureElement::~StructureElement()
+{}
 
-bool StructureElement::is_accessible()
+bool StructureElement::is_accessible() const
 {
     std::cout << "StructureElement::is_accessible()" << std::endl;
 }

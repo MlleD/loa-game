@@ -19,7 +19,6 @@ GameElement::GameElement(const GameElement& ge)
 */
 GameElement::~GameElement()
 {
-    //std::cout << "delete element " << s << std::endl;
     delete pos;
 }
 void GameElement::print()
@@ -32,9 +31,9 @@ Symbole GameElement::get_symbole() const
     return s;
 }
 
-Position& GameElement::get_position() const
+Position* GameElement::get_position() const
 {
-    return *pos;
+    return pos;
 }
 
 void GameElement::set_position(int x, int y)
@@ -82,4 +81,9 @@ void Position::set_y(int _y)
 void Position::print()
 {
     std::cout << "(" << x << ", " << y << ")" << std::endl;
+}
+
+bool operator==(Position const& pos1, Position const& pos2)
+{
+    return (pos1.get_x() == pos2.get_x() && pos1.get_y() == pos2.get_y());
 }

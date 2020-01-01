@@ -6,16 +6,11 @@
 
 using namespace std;
 
-int current_map_number = 0;
-Map* map = nullptr;
-vector<Creature*> creatures;
-//vector<StructureElement*> structures;
-
 
 bool check_victory(Game* game)
 {
     cout << "check if win" << endl;
-    if (game->get_current_map() == game->get_maps().size())
+    if (game->get_current_map() - 1 == game->get_map_number())
     {
         cout << "Bravo tu as gagné !" << endl;
         return true;
@@ -26,12 +21,12 @@ bool check_victory(Game* game)
 bool check_game_loosed(Game* game)
 {
     cout << "check if loose" << endl;
-    Map* map = game->get_maps().at(game->get_current_map()-1);
+    Map* map = game->get_map(game->get_current_map()-1);
     for (int y = 0 ; y < map->get_height() ; y++)
     {
         for (int x = 0 ; x < map->get_width() ; x++)
         {
-            if (map->get(x,y)->get_symbole() == 'J')
+            if (map->get_creature(x,y) != nullptr && map->get_creature(x,y)->get_symbole() == 'J')
             {
                 return false;
             }
@@ -41,55 +36,72 @@ bool check_game_loosed(Game* game)
     return true;
 }
 
-//TODO : Faire en sorte de ne pas faire de down cast: Map devrait contenir ces listes d'elements
-static void init_elements(Map* map)
+void init_creatures(Map* map, vector<Creature*>& all_creatures)
 {
-    cout << "charging map" << endl;
-    //structures.clear();
-    creatures.clear();
-    for (int y = 0 ; y < map->get_height() ; y++)
+    for(int y = 0; y < map->get_height(); y++)
     {
-        for (int x = 0 ; x < map->get_width() ; x++)
+        for(int x = 0; x < map->get_width(); x++)
         {
-            Symbole symbol = map->get(x,y)->get_symbole();
-            if ( symbol == (' ') || symbol == ('X') || symbol == ('+') || symbol == ('-') )
+            Creature* creature = map->get_creature(x,y);
+            if (creature != nullptr)
             {
-                //structures.push_back(dynamic_cast<StructureElement*>(map->get(x,y)));
+                all_creatures.push_back(creature);
             }
-            else if ( symbol == ('J') || symbol == ('s') )
-            {
-                creatures.push_back(dynamic_cast<Creature*>(map->get(x,y)));
-                //structures.push_back(dynamic_cast<StructureElement*>(new Ground(x,y)));
-            }
-            else 
-            {
-                throw invalid_argument(string("Unknow symbol : ") + symbol);
-            }
+        }
+    }
+}
+
+static void remove_creature(vector<Creature*>& creatures, Creature* c)
+{
+    for (auto i = creatures.begin(); i< creatures.end(); i++)
+    {
+        if (*i == c)
+        {
+            creatures.erase(i);
         }
     }
 }
 
 static void play_one_turn(Game* game)
 {
-    map = game->get_maps().at(game->get_current_map()-1);
-    current_map_number = game->get_current_map();
-    init_elements(map);
-    for (int i = 0; i< creatures.size();i++)
+    cout << "play one turn" << endl;
+    Map* map = game->get_map(game->get_current_map()-1);
+    vector<Creature*> all_creatures;
+    init_creatures(map, all_creatures);
+    cout << "creature number : " << all_creatures.size() << endl;
+    for (int i = 0; i< all_creatures.size();i++)
     {
-        Creature* c = creatures.at(i);
-        Position pos = c->wich_move(map);
-        //TODO: check if the destination is interactive : door key ...
-        int x = c->get_position().get_x();
-        int y = c->get_position().get_y();
-        map->put(pos,c);
-        delete map->get(x,y);
-        map->put(x,y,new Ground(x,y));
+        Creature* c = all_creatures.at(i);
+        if (c == nullptr)
+        {
+            continue;
+        }
+        c->print();
+        cout << " at position : ";
+        c->get_position()->print();
+        Position* pos = c->wich_move(game);
+        cout << " position choosed :";
+        pos->print();
+        if (map->get_creature(pos->get_x(),pos->get_y()) != nullptr)
+        {
+            remove_creature(all_creatures,map->get_creature(pos->get_x(),pos->get_y()));
+        }
+        map->move_creature(c->get_position(),pos);//delete la creature à la destination si existante
         c->move_to(pos);
+        InteractiveElement* interactive = map->get_interactive(pos->get_x(), pos->get_y());
+        if (interactive != nullptr && c->get_symbole() == 'J')
+        {
+            interactive->interact(game);
+            delete interactive;//on consume l'objet une fois utilisé
+            map->set_interactive(pos->get_x(), pos->get_y(), nullptr);
+        }
+        delete pos;
     }
 }
 
 static void play(Game* game)
 {
+    cout << "2" << endl;
     while (true) //infinite loop
     {
         if (check_victory(game) || check_game_loosed(game))
@@ -135,7 +147,6 @@ int main(int argc, char const *argv[])
                 Game* game = new Game(1,maps);
                 play(game);
                 delete game;
-                delete map;
                 return 0;
             }
             catch(const exception& e)

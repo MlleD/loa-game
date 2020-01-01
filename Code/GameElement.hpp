@@ -43,7 +43,7 @@ public:
     virtual ~GameElement();
     void print();
     Symbole get_symbole() const;
-    Position& get_position() const;
+    Position* get_position() const;
     void set_position(int x, int y);
 };
 

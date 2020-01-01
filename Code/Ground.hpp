@@ -10,6 +10,6 @@ class Ground : public StructureElement
         Ground();
         Ground(int x, int y);
         ~Ground();
-        bool is_accessible();
+        bool is_accessible() const;
 };
 #endif

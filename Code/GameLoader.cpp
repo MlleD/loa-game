@@ -105,10 +105,10 @@ void GameLoader::save(const Game* game, const std::string file_path)
     {
         int map_number = game->get_map_number();
         file << map_number << endl;
-        vector<Map*> maps = game->get_maps();
         for (int i = 0 ; i < map_number ; i++)
         {
-            string file_path = maps.at(i)->get_file_path();
+            Map* map = game->get_map(i);
+            string file_path = map->get_file_path();
             file << file_path << endl;
         }
         int current_map = game->get_current_map();

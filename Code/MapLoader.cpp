@@ -2,7 +2,7 @@
 
 using namespace std;
 
-GameElement* MapLoader::get_game_element (char symbol)
+StructureElement* MapLoader::get_structure_element (char symbol)
 {
     if ( symbol == (' ') )
     {
@@ -22,6 +22,15 @@ GameElement* MapLoader::get_game_element (char symbol)
     {
         return new Door();
     }
+    throw invalid_argument(string("Unknow symbol : ") + symbol);
+}
+
+Creature* MapLoader::get_creature_element (char symbol)
+{
+    if ( symbol == ('_') )
+    {
+        return nullptr;
+    }
     if ( symbol == ('J') )
     {
         return new Player();
@@ -29,6 +38,19 @@ GameElement* MapLoader::get_game_element (char symbol)
     if ( symbol == ('s') )
     {
         return new Monster();
+    }
+    throw invalid_argument(string("Unknow symbol : ") + symbol);
+}
+
+InteractiveElement* MapLoader::get_interactive_element (char symbol, Map* map, int x , int y)
+{
+    if ( symbol == ('+') || symbol == '-' )
+    {
+        return dynamic_cast<InteractiveElement*>(map->get_structure(x,y));
+    }
+    if ( symbol == ('_') )
+    {
+        return nullptr;
     }
     throw invalid_argument(string("Unknow symbol : ") + symbol);
 }
@@ -77,7 +99,7 @@ Map* MapLoader::get_map (const string file_path)
 
         MapBuilder builder(height, width);
         Map *map = new Map(builder);
-        //Parcours des symboles pour définir les éléments de la map
+        //Parcours des symboles pour définir les structures de la map
         int y = 0;
         while ( y < height && getline (file, line) )
         {
@@ -95,9 +117,84 @@ Map* MapLoader::get_map (const string file_path)
             {
                 try
                 {
-                    GameElement *elt = get_game_element(line[x]);
+                    StructureElement *elt = get_structure_element(line[x]);
                     elt->set_position(x,y);
-                    map->put(x,y,elt);
+                    map->set_structure(x,y,elt);
+                }
+                catch(exception const& e)
+                {
+                    cout << string ("At x : ") << to_string(x) << string (" y : ") << to_string(y) << endl; 
+                    throw;
+                }
+                
+            }
+            y++;
+        }
+        if (y < height)
+        {
+            throw runtime_error("Wrong number of line");
+        }
+        //Parcours des symboles pour définir les éléments interactifs de la map
+        y = 0;
+        while ( y < height && getline (file, line) )
+        {
+            if (line.at(line.size()-1) == '\r')// sous windows
+            {
+                line = line.substr(0,line.size()-1);
+            }
+            
+            else if ( line.length() != width )
+            {
+                throw runtime_error(string("Wrong number of symbols in line ") + to_string(y) +
+                    string(" found ") + to_string(line.length()) + string(" symbols but ") + to_string(width) + string(" was expected.") );
+            }
+            for (int x = 0; x < line.length(); x++)
+            {
+                try
+                {
+                    InteractiveElement *elt = get_interactive_element(line[x],map, x, y);
+                    if (elt != nullptr)
+                    {
+                        map->set_interactive(x,y,elt);
+                    }
+                }
+                catch(exception const& e)
+                {
+                    cout << string ("At x : ") << to_string(x) << string (" y : ") << to_string(y) << endl; 
+                    throw;
+                }
+                
+            }
+            y++;
+        }
+        if (y < height)
+        {
+            throw runtime_error("Wrong number of line");
+        }
+        //Parcours des symboles pour définir les créatures de la map
+        y = 0;
+        while ( y < height && getline (file, line) )
+        {
+            if (line.at(line.size()-1) == '\r')// sous windows
+            {
+                line = line.substr(0,line.size()-1);
+            }
+            
+            else if ( line.length() != width )
+            {
+                throw runtime_error(string("Wrong number of symbols in line ") + to_string(y) +
+                    string(" found ") + to_string(line.length()) + string(" symbols but ") + to_string(width) + string(" was expected.") );
+            }
+            for (int x = 0; x < line.length(); x++)
+            {
+                try
+                {
+                    Creature *elt = get_creature_element(line[x]);
+                    if (elt != nullptr)
+                    {
+                        elt->set_position(x,y);
+                        map->set_creature(x,y,elt);
+                    }
                 }
                 catch(exception const& e)
                 {
@@ -121,21 +218,51 @@ Map* MapLoader::get_map (const string file_path)
     }
 }
 
-void MapLoader::save(const Map map, const string file_path)
+void MapLoader::save(const Map* map, const string file_path)
 {
     remove(file_path.c_str());
     ofstream file (file_path);
     if (file.is_open())
     {
-        int width = map.get_width();
+        int width = map->get_width();
         file << width << endl;
-        int height = map.get_height();
+        int height = map->get_height();
         file << height << endl;
         for (int y = 0 ; y < height ; y++)
         {
             for (int x = 0 ; x < width ; x++)
             {
-                file << map.get(x,y)->get_symbole();
+                file << map->get_structure(x,y)->get_symbole();
+            }
+            file << endl;
+        }
+        for (int y = 0 ; y < height ; y++)
+        {
+            for (int x = 0 ; x < width ; x++)
+            {
+                if (map->get_interactive(x,y) != nullptr)
+                {
+                    file << map->get_interactive(x,y)->get_symbole();
+                }
+                else
+                {
+                    file << '_';
+                }
+            }
+            file << endl;
+        }
+        for (int y = 0 ; y < height ; y++)
+        {
+            for (int x = 0 ; x < width ; x++)
+            {
+                if (map->get_creature(x,y) != nullptr)
+                {
+                    file << map->get_creature(x,y)->get_symbole();
+                }
+                else
+                {
+                    file << '_';
+                }
             }
             file << endl;
         }

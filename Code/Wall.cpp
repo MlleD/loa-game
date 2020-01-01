@@ -8,13 +8,13 @@ Wall::Wall()
 
 Wall::Wall(int x, int y) : StructureElement(x,y)
 {
-    x = 'X';
+    s = 'X';
 }
 
 Wall::~Wall()
 {}
 
-bool Wall::is_accessible()
+bool Wall::is_accessible() const
 {
     return false;
 }
