@@ -54,11 +54,10 @@ Edition de map
 - Améliorer l'affichage de la map
 - Player wich_move() :- Implémenter le tour du joueur
 - Ajouter un membre static const symbole pour le caractère des GameElement
+- Ajouter un nouveau type de monstre
                     
 
 ## TO DO List
 - Game Creator (gc) : - boucle interactive pour modifier une map
 - Améliorer le Makefile
 - Monster wich_move() : ne pas manger les autres monstres sur son passage
-- Ajouter un nouveau type de monstre
-- Game : Ajouter un membre string file_path

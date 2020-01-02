@@ -6,36 +6,6 @@
 
 using namespace std;
 
-int current_map_number = 0;
-Map *map = nullptr;
-vector<Creature *> creatures;
-//vector<StructureElement*> structures;
-
-MapBuilder map_generate()
-{
-
-    int height = 5;
-    int width = 6;
-
-    MapBuilder builder(height, width);
-
-    std::cout << "Bienvenue dans le builder de map " << height << " x " << width << std::endl;
-    std::cout << "Combien de monstres voulez-vous sur la map ?";
-
-    std::string line;
-    std::getline(std::cin, line);
-    builder.set_monsters(atoi(line.c_str()));
-
-    std::cout << "Combien de diamants (et donc de portes de sortie) voulez-vous ?" << std::endl;
-    std::getline(std::cin, line);
-    builder.set_diamonds(atoi(line.c_str()));
-
-    std::cout << "Combien de chargeurs voulez-vous sur la map ?" << std::endl;
-    std::getline(std::cin, line);
-    builder.set_chargers(atoi(line.c_str()));
-    return builder;
-}
-
 /*
  * compare le format (par exemple, l'extension de fichier.board)
  * d'une chaîne str à une extension passée en paramètre
@@ -84,7 +54,14 @@ void init_creatures(Map* map, vector<Creature*>& all_creatures)
             Creature* creature = map->get_creature(x,y);
             if (creature != nullptr)
             {
-                all_creatures.push_back(creature);
+                if (creature->get_symbole() == Player::player_symbol())
+                {
+                    all_creatures.insert(all_creatures.begin(),creature);
+                }
+                else
+                {
+                    all_creatures.push_back(creature);
+                }
             }
         }
     }
@@ -180,6 +157,7 @@ int main(int argc, char const *argv[])
             try
             {
                 Map *map = open_board(file_path);
+                map->set_file_path(file_path);
                 std::vector<Map *> maps;
                 maps.push_back(map);
                 Game *game = new Game(1, maps);

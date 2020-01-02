@@ -99,6 +99,19 @@ Game* GameLoader::get_game(const std::string file_path)
 
 void GameLoader::save(const Game* game, const std::string file_path)
 {
+    //sauvegarde des maps
+    try
+    {
+        for (int i = 0; i < game->get_map_number(); i++)
+        {
+            Map* map = game->get_map(i);
+            MapLoader::save(map,map->get_file_path());
+        }
+    }
+    catch(const std::exception& e)
+    {
+        throw;
+    }
     remove(file_path.c_str());
     ofstream file (file_path);
     if (file.is_open())
@@ -108,8 +121,8 @@ void GameLoader::save(const Game* game, const std::string file_path)
         for (int i = 0 ; i < map_number ; i++)
         {
             Map* map = game->get_map(i);
-            string file_path = map->get_file_path();
-            file << file_path << endl;
+            string board_path = map->get_file_path();
+            file << board_path.c_str() << endl;
         }
         int current_map = game->get_current_map();
         file << current_map << endl;
