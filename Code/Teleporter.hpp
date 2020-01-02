@@ -1,14 +1,15 @@
 #ifndef TELEPORTER_H
 #define TELEPORTER_H
 
-#include "GameObject.hpp"
+#include "InteractiveElement.hpp"
 
-class Teleporter : public GameObject
+class Teleporter : public InteractiveElement
 {
     private:
     public:
         Teleporter();
-        virtual ~Teleporter();
+        ~Teleporter();
+        void interact(const Game* game);
 };
 #endif
 

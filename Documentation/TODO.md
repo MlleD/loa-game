@@ -52,14 +52,14 @@ Edition de map
 - Modifier la structure des fichiers .board, MapLoader, Map afin de dissocier les GameElement en Creature, StuctureElement et InteractiveElement
 - Ajout des classes Teleporter et Diamonds 
 - Améliorer l'affichage de la map
+- Player wich_move() :- Implémenter le tour du joueur
+- Ajouter un membre static const symbole pour le caractère des GameElement
                     
 
 ## TO DO List
 - Game Creator (gc) : - boucle interactive pour modifier une map
 - Game Player (gp) :- créer un ordre pour les tours de jeu
 - Améliorer le Makefile
-- Player wich_move() :- Implémenter le tour du joueur
 - Monster wich_move() : ne pas manger les autres monstres sur son passage
 - Ajouter un nouveau type de monstre
 - Game : Ajouter un membre string file_path
-- Ajouter un membre static const symbole pour le caractère des GameElement
