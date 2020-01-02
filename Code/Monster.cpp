@@ -51,13 +51,20 @@ vector<Position*> Monster::possible_movements(const Map* map)
             {
                 if (map->get_structure(Monster::pos->get_x()+x,Monster::pos->get_y()+y)->is_accessible())
                 {
-                    positions.push_back(new Position(Monster::pos->get_x()+x,Monster::pos->get_y()+y));
+                    Creature* c = map->get_creature(Monster::pos->get_x()+x,Monster::pos->get_y()+y);
+                    if (c != nullptr && c->get_symbole() == Monster::monster_symbol())
+                    {}
+                    else
+                    {
+                        positions.push_back(new Position(Monster::pos->get_x()+x,Monster::pos->get_y()+y));
+                    }
                 }
             }
             catch (const invalid_argument& err)
             {}
         }
     }
+    positions.push_back(new Position(Monster::pos->get_x(),Monster::pos->get_y()));
     return positions;
 }
 

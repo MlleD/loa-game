@@ -41,6 +41,7 @@ bool check_game_loosed(Game *game)
             }
         }
     }
+    map->print();
     cout << "Oups.. tu as perdu !" << endl;
     return true;
 }
