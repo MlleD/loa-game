@@ -126,6 +126,14 @@ Position* Player::get_tp_destination(Game* game)
     return wich_move(game);
 }
 
+static void clear(vector<Position*>& positions)
+{
+    for (int i = 0; i<positions.size(); i++)
+    {
+        delete positions.at(i);
+    }
+}
+
 Position* Player::wich_move(Game* game)
 {
     cout << "Au tour du joueur :"<< endl;
@@ -144,7 +152,7 @@ Position* Player::wich_move(Game* game)
         //save
         if (reponse.compare(string("save"))==0)
         {
-            positions.clear();
+            clear(positions);
             cout << "nom de sauvegarde :" <<endl;
             cin >> reponse;
             try
@@ -163,7 +171,7 @@ Position* Player::wich_move(Game* game)
         //tp
         if (reponse.compare(string("tp"))==0)
         {
-            positions.clear();
+            clear(positions);
             return get_tp_destination(game);
         }//fin tp
         //choix de position possible
@@ -180,18 +188,18 @@ Position* Player::wich_move(Game* game)
                     delete positions.at(i);
                 }
                 */
-                positions.clear();
+                clear(positions);
                 return res;
             }
         }
         catch(const std::exception& e)
         {
-            positions.clear();
+            clear(positions);
             std::cerr << e.what() << endl;
             cout << "Choix non valide..." << endl;
             return wich_move(game);
         }
-        positions.clear();
+        clear(positions);
         //fin choix position possible
         cout << "Choix non valide..." << endl;
         return wich_move(game);
