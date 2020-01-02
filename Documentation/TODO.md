@@ -50,6 +50,7 @@ Edition de map
                                                         move_to(Position)
                     - boucle de jeu
 - Modifier la structure des fichiers .board, MapLoader, Map afin de dissocier les GameElement en Creature, StuctureElement et InteractiveElement
+- Améliorer l'affichage de la map
                     
 
 ## TO DO List

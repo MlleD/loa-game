@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <string>
+#include <math.h>
 
 Map::Map(MapBuilder builder)
  : height(builder.get_height()), width(builder.get_width()), maxIndex(height * width - 1),
@@ -44,15 +46,46 @@ Map::~Map()
     }
 }
 
+static std::string get_indice(int i, int str_len=3)
+{
+    if (i >= pow(10,str_len) )//depassement de capacité
+    {
+        return std::string(str_len,'9');
+    }
+    std::string res;
+    if (i == 0)//0
+    {
+        res = std::string(str_len -1,' ');
+        return res.append(std::string("0"));
+    }
+    int cpt = str_len;
+    while (i/(int)pow(10,cpt-1) == 0)//on élimine les blancs en début de chaine
+    {
+        res.append(" ");
+        cpt--;
+    }
+    res.append(std::to_string(i));
+    return res;
+}
+
 void Map::print()
 {
-    for (int i = 0; i < matrix.size(); i++)
+    std::cout << "y / x -- >" << std::endl;
+    std::cout << "|" << std::endl;
+    std::cout << "v  ";
+    for (int x = 0; x < get_width(); x++)
     {
-        if (i % width == 0)
+        std::cout << get_indice(x);
+    }
+    std::cout << std::endl;
+    for (int y = 0; y < get_height(); y++)
+    {
+        std::cout << get_indice(y);
+        for (int x = 0; x < get_width(); x++)
         {
-            std::cout << std::endl;
+            matrix[y*get_width()+ x]->print();
         }
-        matrix[i]->print();
+        std::cout << std::endl;
     }
     std::cout << std::endl;
 }

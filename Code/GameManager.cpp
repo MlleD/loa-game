@@ -77,10 +77,10 @@ static void play_one_turn(Game* game)
             continue;
         }
         c->print();
-        cout << " at position : ";
+        cout << " à la position : ";
         c->get_position()->print();
         Position* pos = c->wich_move(game);
-        cout << " position choosed :";
+        cout << "s'est déplacé en :";
         pos->print();
         if (map->get_creature(pos->get_x(),pos->get_y()) != nullptr && map->get_creature(pos->get_x(),pos->get_y()) != c)
         {
