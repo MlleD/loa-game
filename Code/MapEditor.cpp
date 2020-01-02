@@ -120,6 +120,7 @@ static void add_element(Map* map)
     {
         return map_edition(map);
     }
+    map->print();
     cout << "Choisissez la position de l'élément :" <<endl;
     cout << "(Pour revenir en arrière : back)" << endl;
     int x, y;

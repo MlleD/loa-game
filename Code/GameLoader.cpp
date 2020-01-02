@@ -43,6 +43,10 @@ Game* GameLoader::get_game(const std::string file_path)
             {
                 Map *map = MapLoader::get_map(line);
                 map->set_file_path(line);
+                if (!map->is_valid())
+                {
+                    throw runtime_error(string("A map is not valid : ")+line);
+                }
                 maps.push_back(map);
             }
             catch(const exception &e)

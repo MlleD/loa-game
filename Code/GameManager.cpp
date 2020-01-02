@@ -92,7 +92,15 @@ static void play_one_turn(Game* game)
         {
             continue;
         }
-        Position* pos = c->wich_move(game);
+        Position* pos;
+        try
+        {
+            pos = c->wich_move(game);
+        }
+        catch(const std::exception& e)
+        {
+            throw;
+        }
         c->print();
         cout << " à la position : ";
         c->get_position()->print();
@@ -124,7 +132,16 @@ static void play(Game *game)
             cout << "Game finished" << endl;
             return;
         }
-        play_one_turn(game);
+        try
+        {
+            play_one_turn(game);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            return;
+        }
+        
     }
 }
 

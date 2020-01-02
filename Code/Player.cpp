@@ -67,6 +67,7 @@ static void print_other_possibilities(const Game* game)
         cout << "Utiliser un téléporteur (reste " << tp << ") : tp"<<endl;
     }
     cout << "Sauvegarder la partie : save"<<endl;
+    cout << "Quitter la partie : quit"<<endl;
 }
 
 Position* Player::get_tp_destination(Game* game)
@@ -159,6 +160,11 @@ Position* Player::wich_move(Game* game)
     {
         string reponse;
         cin >> reponse;
+        //quit
+        if (reponse.compare(string("quit"))==0)
+        {
+            throw runtime_error(string("Quit"));
+        }//fin quit
         //save
         if (reponse.compare(string("save"))==0)
         {

@@ -57,10 +57,13 @@ Edition de map
 - Monster wich_move() : ne pas manger les autres monstres sur son passage
 - Map : is_valide() : une fonciton qui indique si une map est valide/jouable
 - Game Creator (gc) : - boucle interactive pour modifier une map
-                    
+- Verifier que les maps sont valides au moment de leurs chargement
+- Rendre l'ouverture des portes aléatoire
+- gp : Ajouter une commande quit pour le tour du joueur
+
 
 ## TO DO List
 - Améliorer le Makefile
 - Ajouter un nouveau type de monstre
-- Rendre l'ouverture des portes aléatoire
-- Verifier que les maps sont valides au moment de leurs chargement
+- Mettre a jour le diagramme de classes
+- Faire le manuel d'utilisation

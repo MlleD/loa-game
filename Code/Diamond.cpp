@@ -3,6 +3,7 @@
 #include "Door.hpp"
 #include "Map.hpp"
 #include "Game.hpp"
+#include <random>
 using namespace std;
 
 Diamond::Diamond()
@@ -22,6 +23,7 @@ Diamond::~Diamond()
 
 Door* Diamond::get_random_door(Map* map)
 {
+    vector<Door*> doors;
     for (int y = 0; y < map->get_height(); y++)
     {
         for (int x = 0; x < map->get_width(); x++)
@@ -29,11 +31,18 @@ Door* Diamond::get_random_door(Map* map)
             StructureElement* structure = map->get_structure(x,y);
             if (structure != nullptr && structure->get_symbole() == Door::closed_door_symbol())
             {
-                return dynamic_cast<Door*>(structure);
+                doors.push_back(dynamic_cast<Door*>(structure));
             }
         }
     }
-    return nullptr;
+    if (doors.size() == 0)
+    {
+        return nullptr;
+    }
+    srand(time(NULL));
+    int i = rand() % doors.size();
+    Door* random_door = doors.at(i);
+    return random_door;
 }
 
 
