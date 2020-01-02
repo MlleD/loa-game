@@ -9,6 +9,6 @@ class Wall : public StructureElement
         Wall();
         Wall(int x, int y);
         ~Wall();
-        bool is_accessible();
+        bool is_accessible() const;
 };
 #endif

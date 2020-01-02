@@ -1,12 +1,12 @@
 #include "Door.hpp"
 #include <iostream>
 
-Door::Door()
+Door::Door() : GameElement() , StructureElement(), InteractiveElement()
 {
     close();
 }
 
-Door::Door(int x, int y) : StructureElement(x,y)
+Door::Door(int x, int y) : GameElement(x,y) , StructureElement(x,y), InteractiveElement(x,y)
 {
     close();
 }
@@ -26,7 +26,13 @@ void Door::close()
     is_opened = false;
 }
 
-bool Door::is_accessible()
+
+void Door::interact(Game* game)
+{
+
+}
+
+bool Door::is_accessible() const
 {
     return is_opened;
 }

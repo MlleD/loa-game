@@ -32,7 +32,9 @@ static Map* open_board(const string board_file_path)
                 cout << "Choisissez la largeur du plateau entre " << MIN_WIDHT << " et " << MAX_WIDHT << endl;
                 cin >> width;
             }
-            return new Map(MapBuilder(height,width));
+            Map* map = new Map(MapBuilder(height,width));
+            map->set_file_path(board_file_path);
+            return map;
         }
         else
         {
@@ -41,13 +43,14 @@ static Map* open_board(const string board_file_path)
     }
 }
 
-static void map_edition(Map &map)
+static void map_edition(Map* map)
 {
-    map.print();
+    map->print();
+    MapLoader::save(map, map->get_file_path());
 }
 
 //création puis edition d'un fichier.game écrase l'ancien fichier si existant.
-static void game_edition(const string game_file_path, const vector<Map*> maps)
+static void game_edition(const string game_file_path, vector<Map*> maps)
 {
     cout << "Creation d'un nouveau jeu." << endl;
     cout << "L'ordre des maps est celui dans lequel elles ont été données en paramètre." << endl;
@@ -79,8 +82,8 @@ int main(int argc, char const *argv[])
         {
             try
             {
-                Map *map = open_board(file_path);
-                map_edition(*map);
+                Map* map = open_board(file_path);
+                map_edition(map);
                 delete map;
             }
             catch(const exception& e)

@@ -17,7 +17,7 @@ class Position
         void set_y(int y);
         void print();
         //TODO : réussir à surcharger l'operateur ==
-        //Position& operator==(const Position& const p);
+        bool operator==(const Position& p);
 };
 
 #endif
@@ -43,7 +43,7 @@ public:
     virtual ~GameElement();
     void print();
     Symbole get_symbole() const;
-    Position& get_position() const;
+    Position* get_position() const;
     void set_position(int x, int y);
 };
 

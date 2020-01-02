@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Game.hpp"
 
 Player::Player() : Creature()
 {
@@ -13,7 +14,8 @@ Player::Player(int x, int y) : Creature(x,y)
 Player::~Player()
 {}
 
-Position& Player::wich_move(const Map* map)
+Position* Player::wich_move(const Game* game)
 {
-    return *pos;
+    game->get_map(game->get_current_map()-1)->print();
+    return new Position(pos->get_x(),pos->get_y());
 }

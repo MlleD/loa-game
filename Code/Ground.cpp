@@ -14,7 +14,7 @@ Ground::Ground(int x, int y) : StructureElement(x,y)
 Ground::~Ground()
 {}
 
-bool Ground::is_accessible()
+bool Ground::is_accessible() const
 {
     return true;
 }

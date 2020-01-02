@@ -67,26 +67,73 @@ int Map::get_width() const
     return width;
 }
 
-GameElement* Map::get(int x, int y) const
+StructureElement* Map::get_structure(int x, int y) const
 {
     if (x >= Map::get_width() || y >= Map::get_height())
     {
         throw std::invalid_argument(std::string("Index out of range"));
     }
-    return matrix.at(y * Map::get_width() + x)->get_element();
+    return matrix.at(y * Map::get_width() + x)->get_structure();
 }
 
-void Map::put(int x, int y, GameElement* element)
+void Map::set_structure(int x, int y, StructureElement* element)
 {
     if (x >= Map::get_width() || y >= Map::get_height())
     {
         throw std::invalid_argument(std::string("Index out of range"));
     }
-    matrix.at(y*get_width() + x)->set_element(element);
+    matrix.at(y*get_width() + x)->set_structure(element);
 }
-void Map::put(Position pos, GameElement* element)
+
+void Map::set_structure(Position* pos, StructureElement* element)
 {
-    Map::put(pos.get_x(),pos.get_y(),element);
+    Map::set_structure(pos->get_x(),pos->get_y(),element);
+}
+
+InteractiveElement* Map::get_interactive(int x, int y) const
+{
+    if (x >= Map::get_width() || y >= Map::get_height())
+    {
+        throw std::invalid_argument(std::string("Index out of range"));
+    }
+    return matrix.at(y * Map::get_width() + x)->get_interactive();
+}
+
+void Map::set_interactive(int x, int y, InteractiveElement* element)
+{
+    if (x >= Map::get_width() || y >= Map::get_height())
+    {
+        throw std::invalid_argument(std::string("Index out of range"));
+    }
+    matrix.at(y*get_width() + x)->set_interactive(element);
+}
+
+void Map::set_interactive(Position* pos, InteractiveElement* element)
+{
+    Map::set_interactive(pos->get_x(),pos->get_y(),element);
+}
+
+Creature* Map::get_creature(int x, int y) const
+{
+    if (x >= Map::get_width() || y >= Map::get_height())
+    {
+        throw std::invalid_argument(std::string("Index out of range"));
+    }
+    return matrix.at(y * Map::get_width() + x)->get_creature();
+}
+
+void Map::set_creature(int x, int y, Creature* element)
+{
+    if (x >= Map::get_width() || y >= Map::get_height())
+    {
+        throw std::invalid_argument(std::string("Index out of range"));
+    }
+    matrix.at(y*get_width() + x)->set_creature(element);
+}
+
+void Map::set_creature(Position* pos, Creature* element)
+{
+    Map::set_creature(pos->get_x(),pos->get_y(),element);
 }
 
 int Map::get_number_monsters() const
@@ -104,7 +151,6 @@ int Map::get_number_chargers() const
     return number_chargers;
 }
 
-
 void Map::set_file_path(std::string file_path)
 {
     Map::file_path = file_path;
@@ -113,4 +159,15 @@ void Map::set_file_path(std::string file_path)
 std::string Map::get_file_path()
 {
     return Map::file_path;
+}
+
+
+void Map::move_creature(Position* c_pos, Position* destination)
+{
+    if (c_pos->get_x() == destination->get_x() && c_pos->get_y() == destination->get_y())
+    {
+        return;
+    }
+    Map::set_creature(destination,Map::get_creature(c_pos->get_x(),c_pos->get_y()));
+    Map::matrix.at(c_pos->get_y() * Map::get_width() + c_pos->get_x())->remove_creature();
 }
