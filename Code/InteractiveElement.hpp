@@ -1,6 +1,8 @@
 #ifndef INTERACTIVE_ELEMENT
 #define INTERACTIVE_ELEMENT
 #include "GameElement.hpp"
+#include <iostream>
+
 class Game;
 class InteractiveElement : public virtual GameElement
 {
@@ -8,7 +10,7 @@ class InteractiveElement : public virtual GameElement
         InteractiveElement();
         InteractiveElement(int x, int y);
         virtual ~InteractiveElement();
-        virtual void interact(const Game* game);
+        virtual void interact(Game* game);
 };
 
 #endif

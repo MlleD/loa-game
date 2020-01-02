@@ -3,13 +3,20 @@
 
 #include "InteractiveElement.hpp"
 
+using namespace std;
+
 class Teleporter : public InteractiveElement
 {
     private:
     public:
         Teleporter();
+        Teleporter(int x, int y);
         ~Teleporter();
-        void interact(const Game* game);
+        void interact(Game* game);
+        static Symbole teleporter_symbol()
+        {
+            return '*';
+        }
 };
 #endif
 

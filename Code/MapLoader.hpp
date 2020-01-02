@@ -6,6 +6,9 @@
 #include "MapBuilder.hpp"
 #include "Monster.hpp"
 #include "Player.hpp"
+#include "Warp.hpp"
+#include "Diamond.hpp"
+#include "Teleporter.hpp"
 
 #include <iostream>
 #include <string>

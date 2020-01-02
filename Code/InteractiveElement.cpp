@@ -7,5 +7,5 @@ InteractiveElement::InteractiveElement(int x, int y)
 {}
 InteractiveElement::~InteractiveElement()
 {}
-void InteractiveElement::interact(const Game* game)
+void InteractiveElement::interact(Game* game)
 {}

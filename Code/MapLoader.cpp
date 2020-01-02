@@ -48,6 +48,18 @@ InteractiveElement* MapLoader::get_interactive_element (char symbol, Map* map, i
     {
         return nullptr;
     }
+    if ( symbol == Warp::warp_symbol() )
+    {
+        return new Warp();
+    }
+    if ( symbol == Diamond::diamond_symbol() )
+    {
+        return new Diamond();
+    }
+    if ( symbol == Teleporter::teleporter_symbol() )
+    {
+        return new Teleporter();
+    }
     throw invalid_argument(string("Unknow symbol : ") + symbol);
 }
 

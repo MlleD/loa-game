@@ -30,14 +30,6 @@ void Door::close()
     is_opened = false;
 }
 
-/*
-void Door::interact(Game* game)
-{
-    std::cout << game->get_current_map() << std::endl;
-    game->set_current_map(game->get_current_map()+1);
-    std::cout << game->get_current_map() << std::endl;
-}
-*/
 bool Door::is_accessible() const
 {
     return is_opened;

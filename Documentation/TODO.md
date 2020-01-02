@@ -58,7 +58,6 @@ Edition de map
 
 ## TO DO List
 - Game Creator (gc) : - boucle interactive pour modifier une map
-- Game Player (gp) :- créer un ordre pour les tours de jeu
 - Améliorer le Makefile
 - Monster wich_move() : ne pas manger les autres monstres sur son passage
 - Ajouter un nouveau type de monstre

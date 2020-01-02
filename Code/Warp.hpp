@@ -7,7 +7,12 @@ class Warp : public InteractiveElement
     private:
     public:
         Warp();
+        Warp(int x, int y);
         ~Warp();
-        void interact(const Game* game);
+        void interact(Game* game);
+        static Symbole warp_symbol()
+        {
+            return 'p';
+        }
 };
 #endif
