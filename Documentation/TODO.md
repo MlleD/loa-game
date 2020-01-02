@@ -55,9 +55,12 @@ Edition de map
 - Player wich_move() :- Implémenter le tour du joueur
 - Ajouter un membre static const symbole pour le caractère des GameElement
 - Monster wich_move() : ne pas manger les autres monstres sur son passage
+- Map : is_valide() : une fonciton qui indique si une map est valide/jouable
+- Game Creator (gc) : - boucle interactive pour modifier une map
                     
 
 ## TO DO List
-- Game Creator (gc) : - boucle interactive pour modifier une map
 - Améliorer le Makefile
 - Ajouter un nouveau type de monstre
+- Rendre l'ouverture des portes aléatoire
+- Verifier que les maps sont valides au moment de leurs chargement

@@ -8,4 +8,5 @@
 #include <fstream>
 #include <stdexcept>
 
+static void map_edition(Map* map);
 #endif

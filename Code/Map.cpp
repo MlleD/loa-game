@@ -211,3 +211,50 @@ void Map::consume_interactive(int x, int y)
     delete Map::get_interactive(x,y);
     Map::matrix.at(y * Map::get_width() + x)->remove_interactive();
 }
+
+
+bool Map::have_the_element(const Symbole s) const
+{
+    for (int y = 0; y < get_height(); y++)
+    {
+        for (int x = 0; x < get_width(); x++)
+        {
+            if (get_creature(x,y) != nullptr && get_creature(x,y)->get_symbole() == s)
+            {
+                return true;
+            }
+            if (get_interactive(x,y) != nullptr && get_interactive(x,y)->get_symbole() == s)
+            {
+                return true;
+            }
+            if (get_structure(x,y) != nullptr && get_structure(x,y)->get_symbole() == s)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Map::is_valid() const
+{
+    if (!have_the_element(Player::player_symbol()))//si aucun joueur trouvé
+    {
+        cout << "La map doit contenir un joueur" << endl;
+        return false;
+    }
+    if (!have_the_element(Door::opened_door_symbol()))//si aucune porte ouverte trouvé
+    {
+        if (!have_the_element(Door::closed_door_symbol()))//si aucune porte fermée
+        {
+            cout << "La map doit contenir au moins une porte" << endl;
+            return false;
+        }
+        else if (!have_the_element(Diamond::diamond_symbol()))//aucun diamant pour ouvrir les portes fermées
+        {
+            cout << "Aucune porte ne peut être ouverte : il n'y a pas de diamants" << endl;
+            return false;
+        }
+    }
+    return true;
+}

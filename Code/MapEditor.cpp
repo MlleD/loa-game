@@ -2,8 +2,8 @@
 
 using namespace std;
 
-static const int MAX_WIDHT = 20;
-static const int MAX_HEIGHT = 20;
+static const int MAX_WIDHT = 100;
+static const int MAX_HEIGHT = 100;
 static const int MIN_WIDHT = 5;
 static const int MIN_HEIGHT = 5;
 
@@ -43,10 +43,285 @@ static Map* open_board(const string board_file_path)
     }
 }
 
+static Symbole choose_element()
+{
+    string response;
+    while (true)
+    {
+        cout << "Choisissez l'élément à ajouter :" <<endl;
+        cout << "(Pour revenir en arrière : back)" << endl;
+        cout << "Mur : '" << Wall::wall_symbol()<< "'" <<endl;
+        cout << "Sol/vide : '" << Ground::ground_symbol()<< "'" <<endl;
+        cout << "Porte ouverte : '" << Door::opened_door_symbol() << "'" <<endl;
+        cout << "Porte fermée : '" << Door::closed_door_symbol() << "'" <<endl;
+        cout << "Diamant/clef : '" << Diamond::diamond_symbol() << "'" <<endl;
+        cout << "Teleporter : '" << Teleporter::teleporter_symbol()<< "'" <<endl;
+        cout << "Monstre : '" << Monster::monster_symbol()<< "'" <<endl;
+        cout << "Joueur : '" << Player::player_symbol()<< "'" <<endl;
+        cin >> response;
+        if (response.compare(string("back")) == 0 )
+        {
+            throw runtime_error(string("back"));
+        }
+        if (response.size()!=1)
+        {
+            continue;
+        }
+        else
+        {
+            Symbole s = response.c_str()[0];
+            if (s == Wall::wall_symbol())
+            {
+                return Wall::wall_symbol();
+            }
+            if (s == Ground::ground_symbol())
+            {
+                return Ground::ground_symbol();
+            }
+            if (s == Door::opened_door_symbol())
+            {
+                return Door::opened_door_symbol();
+            }
+            if (s == Door::closed_door_symbol())
+            {
+                return  Door::closed_door_symbol();
+            }
+            if (s == Diamond::diamond_symbol())
+            {
+                return Diamond::diamond_symbol();
+            }
+            if (s == Teleporter::teleporter_symbol())
+            {
+                return Teleporter::teleporter_symbol();
+            }
+            if (s == Monster::monster_symbol())
+            {
+                return Monster::monster_symbol();
+            }
+            if (s == Player::player_symbol())
+            {
+                return Player::player_symbol();
+            }
+            cout << "Symbole non valide"<< endl;
+            continue;
+        }
+    }
+}
+
+static void add_element(Map* map)
+{
+    string response;
+    Symbole s;
+    try
+    {
+        s = choose_element();
+    }
+    catch(const std::exception& e)
+    {
+        return map_edition(map);
+    }
+    cout << "Choisissez la position de l'élément :" <<endl;
+    cout << "(Pour revenir en arrière : back)" << endl;
+    int x, y;
+    while (true)//valeur x
+    {
+        cout << "Choisissez la valeur en x :" <<endl;
+        cin >> response;
+        if (response.compare(string("back")) == 0 )
+        {
+            return map_edition(map);
+        }
+        try
+        {
+            x = stoi(response);
+            if (x >= 0 && x < map->get_width())
+            {
+                break;
+            }
+            cout << "Indice en dehors de la map" <<endl;
+            continue;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            continue;
+        }
+    }
+    while (true)//valeur y
+    {
+        cout << "Choisissez la valeur en y :" <<endl;
+        cin >> response;
+        if (response.compare(string("back")) == 0 )
+        {
+            return map_edition(map);
+        }
+        try
+        {
+            y = stoi(response);
+            if (y >= 0 && y < map->get_width())
+            {
+                break;
+            }
+            cout << "Indice en dehors de la map" <<endl;
+            continue;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            continue;
+        }
+    }
+    if (s == Door::closed_door_symbol())
+    {
+        Door* d = new Door(x,y);
+        d->close();
+        map->set_structure(x,y,d);
+        map->set_interactive(x,y,new Warp(x,y));
+    }
+    else if (s == Door::opened_door_symbol())
+    {
+        Door* d = new Door(x,y);
+        d->open();
+        map->set_structure(x,y,d);
+        map->set_interactive(x,y,new Warp(x,y));
+    }
+    else if (s == Wall::wall_symbol())
+    {
+        map->set_structure(x,y,new Wall(x,y));
+    }
+    else if (s == Ground::ground_symbol())
+    {
+        map->set_structure(x,y,new Ground(x,y));
+    }
+    else if (s == Diamond::diamond_symbol())
+    {
+        map->set_interactive(x,y,new Diamond(x,y));
+    }
+    else if (s == Teleporter::teleporter_symbol())
+    {
+        map->set_interactive(x,y,new Teleporter(x,y));
+    }
+    else if (s == Monster::monster_symbol())
+    {
+        map->set_creature(x,y,new Monster(x,y));
+    }
+    else if (s == Player::player_symbol())
+    {
+        map->set_creature(x,y,new Player(x,y));
+    }
+}
+
+static void remove_element(Map* map)
+{
+    string response;
+    cout << "Choisissez la position de l'élément :" <<endl;
+    cout << "(Pour revenir en arrière : back)" << endl;
+    int x, y;
+    while (true)//valeur x
+    {
+        cout << "Choisissez la valeur en x :" <<endl;
+        cin >> response;
+        if (response.compare(string("back")) == 0 )
+        {
+            return map_edition(map);
+        }
+        try
+        {
+            x = stoi(response);
+            if (x >= 0 && x < map->get_width())
+            {
+                break;
+            }
+            cout << "Indice en dehors de la map" <<endl;
+            continue;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            continue;
+        }
+    }
+    while (true)//valeur y
+    {
+        cout << "Choisissez la valeur en y :" <<endl;
+        cin >> response;
+        if (response.compare(string("back")) == 0 )
+        {
+            return map_edition(map);
+        }
+        try
+        {
+            y = stoi(response);
+            if (y >= 0 && y < map->get_width())
+            {
+                break;
+            }
+            cout << "Indice en dehors de la map" <<endl;
+            continue;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            continue;
+        }
+    }
+    map->set_structure(x,y,new Ground(x,y));
+    map->set_interactive(x,y,nullptr);
+    map->set_creature(x,y,nullptr);
+    cout << "Elements removed" << endl;
+}
+
 static void map_edition(Map* map)
 {
-    map->print();
-    MapLoader::save(map, map->get_file_path());
+    while (true)//infinite loop
+    {
+        map->print();
+        cout << "Quels modifications voulez-vous apporter ? :" << endl;
+        cout << "Ajouter un élément dans la map : add" << endl;
+        cout << "Retirer un élément dans la map : rm" << endl;
+        cout << "Verifier si la map est jouable : check" << endl;
+        cout << "Sauvegarder la map : save" << endl;
+        cout << "Quitter : quit" << endl;
+        string response;
+        cin >> response;
+        if (response.compare(string("add")) == 0)
+        {
+            add_element(map);
+        }
+        if (response.compare(string("rm")) == 0)
+        {
+            remove_element(map);
+        }
+        else if (response.compare(string("check")) == 0)
+        {
+            bool test = map->is_valid();
+            if (test)
+            {
+                cout << "La map est jouable/valide" <<endl;
+            }
+            else
+            {
+                cout << "La map n'est pas jouable/valide" << endl;
+            }
+        }
+        else if (response.compare(string("save")) == 0)
+        {
+            try
+            {
+                MapLoader::save(map, map->get_file_path());
+                cout << "Map saved" << endl;
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << endl;
+                continue;
+            }
+        }
+        else if (response.compare(string("quit")) == 0)
+        {
+            return;
+        }
+    }
 }
 
 //création puis edition d'un fichier.game écrase l'ancien fichier si existant.

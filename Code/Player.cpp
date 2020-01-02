@@ -87,7 +87,12 @@ Position* Player::get_tp_destination(Game* game)
         try
         {
             x = stoi(reponse);
-            break;
+            if (x >= 0 && x < map->get_width())
+            {
+                break;
+            }
+            cout << "Indice en dehors de la map" <<endl;
+            continue;
         }
         catch(const std::exception& e)
         {
@@ -107,7 +112,12 @@ Position* Player::get_tp_destination(Game* game)
         try
         {
             y = stoi(reponse);
-            break;
+            if (x >= 0 && x < map->get_width())
+            {
+                break;
+            }
+            cout << "Indice en dehors de la map" <<endl;
+            continue;
         }
         catch(const std::exception& e)
         {

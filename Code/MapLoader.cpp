@@ -218,6 +218,7 @@ Map* MapLoader::get_map (const string file_path)
             throw runtime_error("Wrong number of line");
         }
         file.close();
+        map->set_file_path(file_path);
         return map;
     }
     else 
@@ -229,7 +230,7 @@ Map* MapLoader::get_map (const string file_path)
 void MapLoader::save(const Map* map, const string file_path)
 {
     remove(file_path.c_str());
-    ofstream file (file_path);
+    ofstream file (file_path.c_str());
     if (file.is_open())
     {
         int width = map->get_width();
@@ -278,6 +279,6 @@ void MapLoader::save(const Map* map, const string file_path)
     }
     else
     {
-        throw runtime_error("Unable to open the file "+file_path);
+        throw runtime_error(string("Unable to open the file ")+file_path);
     }
 }

@@ -8,6 +8,7 @@
 #include "Ground.hpp"
 #include "Door.hpp"
 #include "Creature.hpp"
+#include "Player.hpp"
 
 #include <vector>
 #include <string>
@@ -50,5 +51,7 @@ public:
     void consume_interactive(int x, int y);
     std::string get_file_path();
     void print();
+    bool have_the_element(const Symbole s) const;
+    bool is_valid() const;
 };
 #endif
