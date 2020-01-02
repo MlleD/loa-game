@@ -55,6 +55,8 @@ Edition de map
 ## TO DO List
 - Ajout des classes Teleporter et Diamonds
 - Game Creator (gc) : - boucle interactive pour modifier une map
+- Game Player (gp) :- créer un ordre pour les tours de jeu
 - Améliorer le Makefile
 - Player wich_move() :- Implémenter le tour du joueur
+- Monster wich_move() : ne pas manger les autres monstres sur son passage
 - Ajouter un nouveau type de monstre
