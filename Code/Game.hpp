@@ -24,5 +24,6 @@ public:
     int get_teleport_number() const;
     void set_teleport_number(int teleport_number);
     Map* get_map(int i) const;
+    void update_teleport_number(int x);
 };
 #endif

@@ -36,6 +36,12 @@ Position* GameElement::get_position() const
     return pos;
 }
 
+bool GameElement::is_visible() const
+{
+    return visible;
+}
+
+
 void GameElement::set_position(int x, int y)
 {
     pos->set_x(x);
@@ -80,7 +86,7 @@ void Position::set_y(int _y)
 
 void Position::print()
 {
-    std::cout << "(" << x << ", " << y << ")" << std::endl;
+    std::cout << "(" << x << ", " << y << ")";
 }
 
 

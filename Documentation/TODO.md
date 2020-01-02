@@ -50,6 +50,7 @@ Edition de map
                                                         move_to(Position)
                     - boucle de jeu
 - Modifier la structure des fichiers .board, MapLoader, Map afin de dissocier les GameElement en Creature, StuctureElement et InteractiveElement
+
 - Améliorer l'affichage de la map
                     
 
@@ -61,3 +62,5 @@ Edition de map
 - Player wich_move() :- Implémenter le tour du joueur
 - Monster wich_move() : ne pas manger les autres monstres sur son passage
 - Ajouter un nouveau type de monstre
+- Game : Ajouter un membre string file_path
+- Ajouter un membre static const symbole pour le caractère des GameElement

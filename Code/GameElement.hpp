@@ -34,6 +34,7 @@ class GameElement
 protected:
     Symbole s;
     Position* pos;
+    bool visible;
 public:
     GameElement();
     GameElement(int x, int y);
@@ -45,6 +46,7 @@ public:
     Symbole get_symbole() const;
     Position* get_position() const;
     void set_position(int x, int y);
+    bool is_visible() const;
 };
 
 #endif

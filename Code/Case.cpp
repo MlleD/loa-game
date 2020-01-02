@@ -14,10 +14,6 @@ Case::~Case()
     }
     if (interactive != nullptr)
     {
-        if(interactive->get_symbole() == '+' || interactive->get_symbole() == '-')
-        {
-            structure_element = nullptr;
-        }
         delete interactive;
     }
     if (structure_element != nullptr)
@@ -27,19 +23,19 @@ Case::~Case()
 }
 void Case::print()
 {
-    if (creature != nullptr)
+    if (creature != nullptr && creature->is_visible())
     {
         std::cout << "[";
         creature->print();
         std::cout << "]";
     }
-    else if (interactive != nullptr)
+    else if (interactive != nullptr && interactive->is_visible())
     {
         std::cout << "[";
         interactive->print();
         std::cout << "]";
     }
-    else if (structure_element != nullptr)
+    else if (structure_element != nullptr && structure_element->is_visible())
     {
         std::cout << "[";
         std::cout << structure_element->get_symbole();
@@ -47,7 +43,7 @@ void Case::print()
     }
     else
     {
-        throw std::runtime_error(std::string("case dans elements"));
+        throw std::runtime_error(std::string("case sans element visible"));
     }
     
 }
@@ -91,4 +87,10 @@ void Case::set_creature(Creature* element)
 void Case::remove_creature()
 {
     Case::creature = nullptr;
+}
+
+
+void Case::remove_interactive()
+{
+    Case::interactive = nullptr;
 }

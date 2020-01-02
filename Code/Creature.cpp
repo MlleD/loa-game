@@ -1,6 +1,7 @@
 #include "Creature.hpp"
 #include <iostream>
 
+using namespace std;
 
 Creature::Creature()
 {}
@@ -18,7 +19,7 @@ int Creature::move_to(const Position* p)
 }
 
 
-Position* Creature::wich_move(const Game* game)
+Position* Creature::wich_move(Game* game)
 {
     std::cout << "Creature::wich_move()" << std::endl;
 }

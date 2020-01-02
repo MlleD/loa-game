@@ -204,3 +204,10 @@ void Map::move_creature(Position* c_pos, Position* destination)
     Map::set_creature(destination,Map::get_creature(c_pos->get_x(),c_pos->get_y()));
     Map::matrix.at(c_pos->get_y() * Map::get_width() + c_pos->get_x())->remove_creature();
 }
+
+
+void Map::consume_interactive(int x, int y)
+{
+    delete Map::get_interactive(x,y);
+    Map::matrix.at(y * Map::get_width() + x)->remove_interactive();
+}

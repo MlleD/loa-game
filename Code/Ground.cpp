@@ -1,14 +1,17 @@
 #include "Ground.hpp"
 #include <iostream>
 
+
 Ground::Ground()
 {
-    s = ' ';
+    s = ground_symbol();
+    visible = true;
 }
 
 Ground::Ground(int x, int y) : StructureElement(x,y)
 {
-    s = ' ';
+    s = ground_symbol();
+    visible = true;
 }
 
 Ground::~Ground()

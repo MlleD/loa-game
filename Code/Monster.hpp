@@ -11,6 +11,12 @@ class Monster : public Creature
         Monster();
         Monster(int x, int y);
         ~Monster();
-        Position* wich_move(const Game* game);
+        Position* wich_move(Game* game);
+        //static Symbole monster_symbol();
+
+        static Symbole monster_symbol()
+        {
+            return 's';
+        }
 };
 #endif

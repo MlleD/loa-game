@@ -23,5 +23,6 @@ public:
     Creature* get_creature() const;
     void set_creature(Creature* element);
     void remove_creature();
+    void remove_interactive();
 };
 #endif

@@ -26,7 +26,7 @@ bool check_game_loosed(Game* game)
     {
         for (int x = 0 ; x < map->get_width() ; x++)
         {
-            if (map->get_creature(x,y) != nullptr && map->get_creature(x,y)->get_symbole() == 'J')
+            if (map->get_creature(x,y) != nullptr && map->get_creature(x,y)->get_symbole() == Player::player_symbol())
             {
                 return false;
             }
@@ -64,7 +64,6 @@ static void remove_creature(vector<Creature*>& creatures, Creature* c)
 
 static void play_one_turn(Game* game)
 {
-    cout << "play one turn" << endl;
     Map* map = game->get_map(game->get_current_map()-1);
     vector<Creature*> all_creatures;
     init_creatures(map, all_creatures);
@@ -76,12 +75,13 @@ static void play_one_turn(Game* game)
         {
             continue;
         }
+        Position* pos = c->wich_move(game);
         c->print();
         cout << " à la position : ";
         c->get_position()->print();
-        Position* pos = c->wich_move(game);
-        cout << "s'est déplacé en :";
+        cout << " s'est déplacé en :";
         pos->print();
+        cout << endl;
         if (map->get_creature(pos->get_x(),pos->get_y()) != nullptr && map->get_creature(pos->get_x(),pos->get_y()) != c)
         {
             remove_creature(all_creatures,map->get_creature(pos->get_x(),pos->get_y()));
@@ -89,11 +89,10 @@ static void play_one_turn(Game* game)
         map->move_creature(c->get_position(),pos);//delete la creature à la destination si existante
         c->move_to(pos);
         InteractiveElement* interactive = map->get_interactive(pos->get_x(), pos->get_y());
-        if (interactive != nullptr && c->get_symbole() == 'J')
+        if (interactive != nullptr && c->get_symbole() == Player::player_symbol())
         {
             interactive->interact(game);
-            delete interactive;//on consume l'objet une fois utilisé
-            map->set_interactive(pos->get_x(), pos->get_y(), nullptr);
+            map->consume_interactive(pos->get_x(), pos->get_y());
         }
         delete pos;
     }
@@ -101,7 +100,6 @@ static void play_one_turn(Game* game)
 
 static void play(Game* game)
 {
-    cout << "2" << endl;
     while (true) //infinite loop
     {
         if (check_victory(game) || check_game_loosed(game))

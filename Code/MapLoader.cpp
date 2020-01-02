@@ -4,21 +4,21 @@ using namespace std;
 
 StructureElement* MapLoader::get_structure_element (char symbol)
 {
-    if ( symbol == (' ') )
+    if ( symbol == Ground::ground_symbol() )
     {
         return new Ground();
     }
-    if ( symbol == ('X') )
+    if ( symbol == Wall::wall_symbol() )
     {
         return new Wall();
     }
-    if ( symbol == ('+') )
+    if ( symbol == Door::opened_door_symbol() )
     {
         Door *door = new Door();
         door->open();
         return door;
     }
-    if ( symbol == ('-') )
+    if ( symbol == Door::closed_door_symbol() )
     {
         return new Door();
     }
@@ -31,11 +31,11 @@ Creature* MapLoader::get_creature_element (char symbol)
     {
         return nullptr;
     }
-    if ( symbol == ('J') )
+    if ( symbol == Player::player_symbol() )
     {
         return new Player();
     }
-    if ( symbol == ('s') )
+    if ( symbol == Monster::monster_symbol() )
     {
         return new Monster();
     }
@@ -44,10 +44,6 @@ Creature* MapLoader::get_creature_element (char symbol)
 
 InteractiveElement* MapLoader::get_interactive_element (char symbol, Map* map, int x , int y)
 {
-    if ( symbol == ('+') || symbol == '-' )
-    {
-        return dynamic_cast<InteractiveElement*>(map->get_structure(x,y));
-    }
     if ( symbol == ('_') )
     {
         return nullptr;

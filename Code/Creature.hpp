@@ -7,12 +7,13 @@
 class Game;
 class Creature : public virtual GameElement
 {
+    private:
     public:
         Creature();
         Creature(int x, int y);
         virtual ~Creature();
         int move_to(const Position* p);
-        virtual Position* wich_move(const Game* game);
+        virtual Position* wich_move(Game* game);
 };
 
 #endif

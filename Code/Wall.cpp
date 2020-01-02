@@ -1,14 +1,19 @@
 #include "Wall.hpp"
 #include <iostream>
 
+
+
+
 Wall::Wall()
 {
-    s = 'X';
+    s = wall_symbol();
+    visible = true;
 }
 
 Wall::Wall(int x, int y) : StructureElement(x,y)
 {
-    s = 'X';
+    s = wall_symbol();
+    visible = true;
 }
 
 Wall::~Wall()

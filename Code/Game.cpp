@@ -24,7 +24,7 @@ Game::Game(int map_number, std::vector<Map*> maps, int current_map, int teleport
 
 Game::~Game()
 {
-    cout << "destroying game" << endl;
+    //cout << "destroying game" << endl;
     for (int i = 0; i < get_map_number(); i++)
     {
         delete get_map(i);
@@ -72,4 +72,9 @@ void Game::set_maps(std::vector<Map*> maps)
     {
         Game::maps.push_back(maps.at(i));
     }
+}
+
+void Game::update_teleport_number(int x)
+{
+    Game::teleport_number += x;
 }

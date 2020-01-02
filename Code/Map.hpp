@@ -47,6 +47,7 @@ public:
     void set_creature(Position* pos, Creature* element);
     void set_file_path(std::string file_path);
     void move_creature(Position* c_pos, Position* destination);
+    void consume_interactive(int x, int y);
     std::string get_file_path();
     void print();
 };

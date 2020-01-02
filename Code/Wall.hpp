@@ -10,5 +10,10 @@ class Wall : public StructureElement
         Wall(int x, int y);
         ~Wall();
         bool is_accessible() const;
+        //static Symbole wall_symbol();
+        static Symbole wall_symbol()
+        {
+            return 'X';
+        }
 };
 #endif

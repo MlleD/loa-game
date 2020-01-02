@@ -1,22 +1,44 @@
 #include "Monster.hpp"
 #include "Map.hpp"
 #include "Game.hpp"
+#include "Player.hpp"
 #include <iostream>
 
+
 using namespace std;
+
+
 Monster::Monster()
 {
-    s = 's';
+    s = monster_symbol();
+    visible = true;
 }
 
 
 Monster::Monster(int x, int y) : Creature(x,y)
 {
-    s = 's';
+    s = monster_symbol();
+    visible = true;
 }
 
 Monster::~Monster()
 {}
+
+static void get_player_position(const Map* map, int& p_x, int& p_y)
+{
+    for (int y = 0; y < map->get_height(); y++)
+    {
+        for (int x = 0; x < map->get_width(); x++)
+        {
+            if (map->get_creature(x,y) != nullptr && map->get_creature(x,y)->get_symbole() == Player::player_symbol())
+            {
+                p_x = x;
+                p_y = y;
+                return;
+            }
+        }
+    }
+}
 
 vector<Position*> Monster::possible_movements(const Map* map)
 {
@@ -29,8 +51,7 @@ vector<Position*> Monster::possible_movements(const Map* map)
             {
                 if (map->get_structure(Monster::pos->get_x()+x,Monster::pos->get_y()+y)->is_accessible())
                 {
-                    Position* position = new Position(Monster::pos->get_x()+x,Monster::pos->get_y()+y);
-                    positions.push_back(position);
+                    positions.push_back(new Position(Monster::pos->get_x()+x,Monster::pos->get_y()+y));
                 }
             }
             catch (const invalid_argument& err)
@@ -38,22 +59,6 @@ vector<Position*> Monster::possible_movements(const Map* map)
         }
     }
     return positions;
-}
-
-static void get_player_position(const Map* map, int& p_x, int& p_y)
-{
-    for (int y = 0; y < map->get_height(); y++)
-    {
-        for (int x = 0; x < map->get_width(); x++)
-        {
-            if (map->get_creature(x,y) != nullptr && map->get_creature(x,y)->get_symbole() == 'J')
-            {
-                p_x = x;
-                p_y = y;
-                return;
-            }
-        }
-    }
 }
 
 //return < 0 if distance between pos1 and x y is smaller than pos2 and x y
@@ -65,7 +70,7 @@ static int compare(Position* pos1, Position* pos2, int x, int y)
 }
 
 //choose the nearest position to the player
-Position* Monster::wich_move(const Game* game)
+Position* Monster::wich_move(Game* game)
 {
     Map* map = game->get_map(game->get_current_map()-1);
     vector<Position*> positions = possible_movements(map);
