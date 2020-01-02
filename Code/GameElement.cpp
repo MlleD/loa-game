@@ -83,7 +83,9 @@ void Position::print()
     std::cout << "(" << x << ", " << y << ")" << std::endl;
 }
 
-bool operator==(Position const& pos1, Position const& pos2)
+
+bool Position::operator==(const Position& p)
 {
-    return (pos1.get_x() == pos2.get_x() && pos1.get_y() == pos2.get_y());
+    return (Position::get_x() == p.get_x() && Position::get_y() == p.get_y());
 }
+

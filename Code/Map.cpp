@@ -164,7 +164,7 @@ std::string Map::get_file_path()
 
 void Map::move_creature(Position* c_pos, Position* destination)
 {
-    if (c_pos == destination)
+    if (c_pos->get_x() == destination->get_x() && c_pos->get_y() == destination->get_y())
     {
         return;
     }

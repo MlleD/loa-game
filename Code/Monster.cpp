@@ -80,7 +80,7 @@ Position* Monster::wich_move(const Game* game)
     for (int i = 1; i < positions.size(); i++)
     {
         Position* position = positions.at(i);
-        position->print();
+        //position->print();
         if (compare(position,best_position,p_x,p_y) < 0)
         {
             delete best_position;

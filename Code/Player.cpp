@@ -17,5 +17,5 @@ Player::~Player()
 Position* Player::wich_move(const Game* game)
 {
     game->get_map(game->get_current_map()-1)->print();
-    return pos;
+    return new Position(pos->get_x(),pos->get_y());
 }

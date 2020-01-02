@@ -17,7 +17,7 @@ class Position
         void set_y(int y);
         void print();
         //TODO : réussir à surcharger l'operateur ==
-        //Position& operator==(const Position& const p);
+        bool operator==(const Position& p);
 };
 
 #endif

@@ -9,7 +9,7 @@ using namespace std;
 
 bool check_victory(Game* game)
 {
-    cout << "check if win" << endl;
+    //cout << "check if win" << endl;
     if (game->get_current_map() - 1 == game->get_map_number())
     {
         cout << "Bravo tu as gagné !" << endl;
@@ -20,7 +20,7 @@ bool check_victory(Game* game)
 
 bool check_game_loosed(Game* game)
 {
-    cout << "check if loose" << endl;
+    //cout << "check if loose" << endl;
     Map* map = game->get_map(game->get_current_map()-1);
     for (int y = 0 ; y < map->get_height() ; y++)
     {
@@ -68,7 +68,7 @@ static void play_one_turn(Game* game)
     Map* map = game->get_map(game->get_current_map()-1);
     vector<Creature*> all_creatures;
     init_creatures(map, all_creatures);
-    cout << "creature number : " << all_creatures.size() << endl;
+    //cout << "creature number : " << all_creatures.size() << endl;
     for (int i = 0; i< all_creatures.size();i++)
     {
         Creature* c = all_creatures.at(i);
@@ -82,7 +82,7 @@ static void play_one_turn(Game* game)
         Position* pos = c->wich_move(game);
         cout << " position choosed :";
         pos->print();
-        if (map->get_creature(pos->get_x(),pos->get_y()) != nullptr)
+        if (map->get_creature(pos->get_x(),pos->get_y()) != nullptr && map->get_creature(pos->get_x(),pos->get_y()) != c)
         {
             remove_creature(all_creatures,map->get_creature(pos->get_x(),pos->get_y()));
         }
