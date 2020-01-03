@@ -143,7 +143,14 @@ static void play(Game *game)
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
+            if (check_victory(game))
+            {
+                cout << "Game finished" << endl;
+            }
+            else
+            {
+                std::cerr << e.what() << '\n';
+            }
             return;
         }
         
