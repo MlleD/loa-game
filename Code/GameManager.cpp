@@ -141,16 +141,9 @@ static void play(Game *game)
         {
             play_one_turn(game);
         }
-        catch(const std::exception& e)
+        catch(const exception& e)
         {
-            if (check_victory(game))
-            {
-                cout << "Game finished" << endl;
-            }
-            else
-            {
-                std::cerr << e.what() << '\n';
-            }
+            cerr << e.what() << endl;
             return;
         }
         
