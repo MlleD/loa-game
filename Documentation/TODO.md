@@ -60,6 +60,7 @@ Edition de map
 - Verifier que les maps sont valides au moment de leurs chargement
 - Rendre l'ouverture des portes aléatoire
 - gp : Ajouter une commande quit pour le tour du joueur
+- Fin du jeu : faire en sorte qu'on puisse gagner le jeu
 
 
 ## TO DO List
