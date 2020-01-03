@@ -84,7 +84,6 @@ static void play_one_turn(Game* game)
     Map* map = game->get_map(game->get_current_map()-1);
     vector<Creature*> all_creatures;
     init_creatures(map, all_creatures);
-    //cout << "creature number : " << all_creatures.size() << endl;
     for (int i = 0; i< all_creatures.size();i++)
     {
         Creature* c = all_creatures.at(i);
@@ -117,6 +116,12 @@ static void play_one_turn(Game* game)
         if (interactive != nullptr && c->get_symbole() == Player::player_symbol())
         {
             interactive->interact(game);
+            if(interactive->get_symbole() == Warp::warp_symbol())//en cas de changement de map on ne fais pas jouer les 
+            {
+                map->consume_interactive(pos->get_x(), pos->get_y());
+                delete pos;
+                return;
+            }
             map->consume_interactive(pos->get_x(), pos->get_y());
         }
         delete pos;
