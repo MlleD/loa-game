@@ -39,7 +39,11 @@ Creature* MapLoader::get_creature_element (char symbol)
     {
         return new Monster();
     }
-    throw invalid_argument(string("Unknow symbol : ") + symbol);
+    if ( symbol == FastMonster::fast_monster_symbol() )
+    {
+        return new FastMonster();
+    }
+    throw invalid_argument(string("Unknown symbol : ") + symbol);
 }
 
 InteractiveElement* MapLoader::get_interactive_element (char symbol, Map* map, int x , int y)

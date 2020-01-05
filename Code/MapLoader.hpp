@@ -4,6 +4,7 @@
 #include "Map.hpp"
 #include "GameElement.hpp"
 #include "MapBuilder.hpp"
+#include "FastMonster.hpp"
 #include "Monster.hpp"
 #include "Player.hpp"
 #include "Warp.hpp"

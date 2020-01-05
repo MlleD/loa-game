@@ -61,10 +61,10 @@ Edition de map
 - Rendre l'ouverture des portes aléatoire
 - gp : Ajouter une commande quit pour le tour du joueur
 - Fin du jeu : faire en sorte qu'on puisse gagner le jeu
+- Ajouter un nouveau type de monstre : peut se déplacer dans une région de deux cases à la ronde, mais se déplace aléatoirement.
 
 
 ## TO DO List
 - Améliorer le Makefile
-- Ajouter un nouveau type de monstre
 - Mettre a jour le diagramme de classes
 - Faire le manuel d'utilisation
