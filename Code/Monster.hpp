@@ -1,12 +1,15 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 #include "Creature.hpp"
+#include "FastMonster.hpp"
 class Map;
 
 class Monster : public Creature
 {
     private:
         std::vector<Position*> possible_movements(const Map* map);
+    protected:
+        bool is_monster(Symbole s);
     public:
         Monster();
         Monster(int x, int y);

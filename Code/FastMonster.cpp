@@ -33,7 +33,7 @@ vector<Position*> FastMonster::possible_movements(const Map* map)
                 if (map->get_structure(FastMonster::pos->get_x()+x,FastMonster::pos->get_y()+y)->is_accessible())
                 {
                     Creature* c = map->get_creature(FastMonster::pos->get_x()+x,FastMonster::pos->get_y()+y);
-                    if (c != nullptr && c->get_symbole() == FastMonster::monster_symbol())
+                    if (c != nullptr && (Monster::is_monster(c->get_symbole())))
                     {}
                     else
                     {

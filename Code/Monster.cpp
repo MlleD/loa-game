@@ -40,6 +40,11 @@ static void get_player_position(const Map* map, int& p_x, int& p_y)
     }
 }
 
+bool Monster::is_monster(Symbole s)
+{
+    return s == FastMonster::fast_monster_symbol() || s == monster_symbol();
+}
+
 vector<Position*> Monster::possible_movements(const Map* map)
 {
     vector<Position*> positions;
@@ -52,7 +57,7 @@ vector<Position*> Monster::possible_movements(const Map* map)
                 if (map->get_structure(Monster::pos->get_x()+x,Monster::pos->get_y()+y)->is_accessible())
                 {
                     Creature* c = map->get_creature(Monster::pos->get_x()+x,Monster::pos->get_y()+y);
-                    if (c != nullptr && c->get_symbole() == Monster::monster_symbol())
+                    if (c != nullptr && is_monster(c->get_symbole()))
                     {}
                     else
                     {
