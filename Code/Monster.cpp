@@ -2,6 +2,7 @@
 #include "Map.hpp"
 #include "Game.hpp"
 #include "Player.hpp"
+#include "FastMonster.hpp"
 #include <iostream>
 
 
