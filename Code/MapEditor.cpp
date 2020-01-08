@@ -57,7 +57,7 @@ static Symbole choose_element()
         cout << "Diamant/clef : '" << Diamond::diamond_symbol() << "'" <<endl;
         cout << "Teleporter : '" << Teleporter::teleporter_symbol()<< "'" <<endl;
         cout << "Monstre : '" << Monster::monster_symbol()<< "'" <<endl;
-        cout << "Monstre rapide : '" << FastMonster::fast_monster_symbol() << "'" <<endl;
+        cout << "Monstre errant : '" << WanderingMonster::wandering_monster_symbol() << "'" <<endl;
         cout << "Joueur : '" << Player::player_symbol()<< "'" <<endl;
         cin >> response;
         if (response.compare(string("back")) == 0 )
@@ -99,9 +99,9 @@ static Symbole choose_element()
             {
                 return Monster::monster_symbol();
             }
-            if (s == FastMonster::fast_monster_symbol())
+            if (s == WanderingMonster::wandering_monster_symbol())
             {
-                return FastMonster::monster_symbol();
+                return WanderingMonster::wandering_monster_symbol();
             }
             if (s == Player::player_symbol())
             {

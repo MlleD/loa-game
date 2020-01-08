@@ -39,9 +39,9 @@ Creature* MapLoader::get_creature_element (char symbol)
     {
         return new Monster();
     }
-    if ( symbol == FastMonster::fast_monster_symbol() )
+    if ( symbol == WanderingMonster::wandering_monster_symbol() )
     {
-        return new FastMonster();
+        return new WanderingMonster();
     }
     throw invalid_argument(string("Unknown symbol : ") + symbol);
 }
