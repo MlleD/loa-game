@@ -199,6 +199,10 @@ static void add_element(Map* map)
     {
         map->set_structure(x,y,new Ground(x,y));
     }
+    if (!map->get_structure(x,y)->is_accessible()){
+        cout << string("Impossible d'ajouter un objet interactif ou une creature sur une case innaccessible.") << endl;
+        return;
+    }
     else if (s == Diamond::diamond_symbol())
     {
         map->set_interactive(x,y,new Diamond(x,y));
