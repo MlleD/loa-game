@@ -23,7 +23,7 @@ Game Player (gp) :
         Le joueur joue toujours en premier
         Pour passer un niveau vous devez atteindre une porte ouverte '+'.
         Pour ouvrir une porte vous devez atteindre/ramasser un diamant '$'
-        Attention aux monstres 's' si ils vous touchent (il atteignent votre position) vous perdez
+        Attention aux monstres 's' et 'w' : si ils vous touchent (il atteignent votre position) vous perdez
         Afin de vous aider des téléporteurs '*' peuvent être trouvés : 
             ils permetteront de vous téléporter dans n'importe quelle case accéssible de votre choix dans la map
         Les murs sont symbolysé par un 'X' et sont innaccessibles aux monstres et aux joueurs
