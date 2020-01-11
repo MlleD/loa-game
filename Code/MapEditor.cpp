@@ -207,6 +207,10 @@ static void add_element(Map* map)
     {
         map->set_interactive(x,y,new Teleporter(x,y));
     }
+    else if (s == WanderingMonster::wandering_monster_symbol())
+    {
+        map->set_creature(x, y, new WanderingMonster(x, y));
+    }
     else if (s == Monster::monster_symbol())
     {
         map->set_creature(x,y,new Monster(x,y));
