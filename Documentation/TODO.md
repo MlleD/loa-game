@@ -62,9 +62,10 @@ Edition de map
 - gp : Ajouter une commande quit pour le tour du joueur
 - Fin du jeu : faire en sorte qu'on puisse gagner le jeu
 - Ajouter un nouveau type de monstre : peut se déplacer dans une région de deux cases à la ronde, mais se déplace aléatoirement.
+- Mettre a jour le diagramme de classes
+- Faire le manuel d'utilisation
+
 
 
 ## TO DO List
 - Améliorer le Makefile
-- Mettre a jour le diagramme de classes
-- Faire le manuel d'utilisation
