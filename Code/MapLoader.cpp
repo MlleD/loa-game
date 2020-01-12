@@ -22,7 +22,7 @@ StructureElement* MapLoader::get_structure_element (char symbol)
     {
         return new Door();
     }
-    throw invalid_argument(string("Unknow symbol : ") + symbol);
+    throw invalid_argument(string("Unknown symbol : ") + symbol);
 }
 
 Creature* MapLoader::get_creature_element (char symbol)
@@ -64,7 +64,7 @@ InteractiveElement* MapLoader::get_interactive_element (char symbol, Map* map, i
     {
         return new Teleporter();
     }
-    throw invalid_argument(string("Unknow symbol : ") + symbol);
+    throw invalid_argument(string("Unknown symbol : ") + symbol);
 }
 
 Map* MapLoader::get_map (const string file_path)

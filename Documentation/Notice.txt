@@ -1,42 +1,42 @@
 Notice d'utilisation :
 
 Game Creator (gc) :
-    Application permettant d'éditer des fichiers .board (contenants une "Map"/"niveau")
+    Application permettant d'éditer des fichiers .board (contenant une "Map"/"niveau")
     Edition de map/niveau :
-        Tout d'abord créer un fichier avec l'extension .board puis lancer la commande : ./gc fichier.board
-        Dans le terminal vous pourrez voir les instructions possible afin de modifier la map
+        Tout d'abord créez un fichier avec l'extension .board puis lancez la commande : ./gc fichier.board
+        Dans le terminal vous pourrez voir les instructions possibles afin de modifier la map
     Création de jeu :
-        Créer un fichier .game puis lancer la commande : ./gc fichier.game [liste non vide de fichiers .board]
-        l'ordre dans lequel vous entrez les fichier .board en paramètre sera l'ordre dans lequels les maps seront dans le jeu
-        Dans le terminal vous pourrez voir les instructions à suivre afin de créer votrer jeu :
+        Créez un fichier .game puis lancez la commande : ./gc fichier.game [liste non vide de fichiers .board]
+        l'ordre dans lequel vous entrez les fichiers .board en paramètre sera l'ordre dans lequel les maps seront dans le jeu
+        Dans le terminal, vous pourrez voir les instructions à suivre afin de créer votre jeu :
             choix du nombre de téléporteur au début du jeu etc..
 
 Game Player (gp) :
     Application permettant de jouer au jeu:
     Test de Map : 
         Vous pouvez tester une Map/niveau en tapant la commande : ./gp fichier.board
-    Jouer a un jeu :
+    Jouer à un jeu :
         Vous pouvez jouer à un jeu (série de plusieurs Maps/niveaux) en tappant la commande ./gp fichier.game
     Déroulement du jeu :
-        Le jeu se déroule en tour par tour : chaque creatures (monstre et joueur) jouent/se deplace dans un tours
+        Le jeu se déroule en tour par tour : chaque créature (monstre et joueur) joue/se deplace dans un tour
         Vous êtes symbolisé par la lettre 'J', votre but est de passer tous les niveaux.
-        Le joueur joue toujours en premier
+        Le joueur joue toujours en premier.
         Pour passer un niveau vous devez atteindre une porte ouverte '+'.
-        Pour ouvrir une porte vous devez atteindre/ramasser un diamant '$'
-        Attention aux monstres 's' et 'w' : si ils vous touchent (il atteignent votre position) vous perdez
+        Pour ouvrir une porte vous devez atteindre/ramasser un diamant '$'.
+        Attention aux monstres 's' et 'w' : s'ils vous touchent (il atteignent votre position) vous perdez.
         Afin de vous aider des téléporteurs '*' peuvent être trouvés : 
-            ils permetteront de vous téléporter dans n'importe quelle case accéssible de votre choix dans la map
-        Les murs sont symbolysé par un 'X' et sont innaccessibles aux monstres et aux joueurs
+            ils permettront de vous téléporter dans n'importe quelle case accessible de votre choix dans la map
+        Les murs sont symbolisés par un 'X' et sont inaccessibles aux monstres et aux joueurs.
     Sauvegarde :
-        A chaque tour du joueur vous aurez la possibilité de sauvegarder la partie en tappant : save
-            ou quitter en tappant : quit (qui ne sauvegarde pas la partie)
+        A chaque tour du joueur vous aurez la possibilité de sauvegarder la partie en tapant : save
+            ou quitter en tapant : quit (qui ne sauvegarde pas la partie).
 
 A savoir :
-    Il faut éviter d'utiliser un même fichier .board pour plusieurs fichier .game :
+    Il faut éviter d'utiliser un même fichier .board pour plusieurs fichiers .game :
         sauvegarder une des deux parties impacterait directement l'autre
-        Pensez donc a créer une copie du fichier .board en question pour que leurs utilisation soit unique
+        Pensez donc à créer une copie du fichier .board en question pour que leur utilisation soit unique
     Il faut éviter d'utiliser plusieur fois un fichier .board dans un meme fichier .game :
-        au moment de la sauvegarde cela pourrais poser problème
+        au moment de la sauvegarde cela pourrait poser problème
     Conclusion : pour vous assurer une sauvegarde qui n'impacte pas le déroulement du jeu il  
         faut faire en sorte que chaque fichier.board soit utilisé une et une seule fois (meme à l'interieur d'un fichier .game)
         

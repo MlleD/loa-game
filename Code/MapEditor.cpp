@@ -200,7 +200,7 @@ static void add_element(Map* map)
         map->set_structure(x,y,new Ground(x,y));
     }
     if (!map->get_structure(x,y)->is_accessible()){
-        cout << string("Impossible d'ajouter un objet interactif ou une creature sur une case innaccessible.") << endl;
+        cout << string("Impossible d'ajouter un objet interactif ou une creature sur une case inaccessible.") << endl;
         return;
     }
     else if (s == Diamond::diamond_symbol())
@@ -343,7 +343,7 @@ static void game_edition(const string game_file_path, vector<Map*> maps)
 {
     cout << "Creation d'un nouveau jeu." << endl;
     cout << "L'ordre des maps est celui dans lequel elles ont été données en paramètre." << endl;
-    cout << "Attention : le joueur doit impérativement être situé dans le premier fichier .board et nul part ailleurs." << endl;
+    cout << "Attention : le joueur doit impérativement être situé dans le premier fichier .board et nulle part ailleurs." << endl;
     int map_number = maps.size();
     int teleport_number = -1;
     while (teleport_number < 0)
