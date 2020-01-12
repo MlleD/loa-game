@@ -4,7 +4,10 @@ Game Creator (gc) :
     Application permettant d'éditer des fichiers .board (contenant une "Map"/"niveau")
     Edition de map/niveau :
         Tout d'abord créez un fichier avec l'extension .board puis lancez la commande : ./gc fichier.board
-        Dans le terminal vous pourrez voir les instructions possibles afin de modifier la map
+        Dans le terminal vous pourrez voir les instructions possibles afin de modifier la map : 
+        - ajout d'un élément de jeu
+        - suppression d'un élément de jeu
+        - vérification de la validité d'une map - sauvegarde d'une map
     Création de jeu :
         Créez un fichier .game puis lancez la commande : ./gc fichier.game [liste non vide de fichiers .board]
         l'ordre dans lequel vous entrez les fichiers .board en paramètre sera l'ordre dans lequel les maps seront dans le jeu
