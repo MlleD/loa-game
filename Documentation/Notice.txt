@@ -16,7 +16,7 @@ Game Player (gp) :
     Test de Map : 
         Vous pouvez tester une Map/niveau en tapant la commande : ./gp fichier.board
     Jouer à un jeu :
-        Vous pouvez jouer à un jeu (série de plusieurs Maps/niveaux) en tappant la commande ./gp fichier.game
+        Vous pouvez jouer à un jeu (série de plusieurs Maps/niveaux) en tapant la commande ./gp fichier.game
     Déroulement du jeu :
         Le jeu se déroule en tour par tour : chaque créature (monstre et joueur) joue/se deplace dans un tour
         Vous êtes symbolisé par la lettre 'J', votre but est de passer tous les niveaux.
@@ -35,9 +35,9 @@ A savoir :
     Il faut éviter d'utiliser un même fichier .board pour plusieurs fichiers .game :
         sauvegarder une des deux parties impacterait directement l'autre
         Pensez donc à créer une copie du fichier .board en question pour que leur utilisation soit unique
-    Il faut éviter d'utiliser plusieur fois un fichier .board dans un meme fichier .game :
+    Il faut éviter d'utiliser plusieurs fois un fichier .board dans un même fichier .game :
         au moment de la sauvegarde cela pourrait poser problème
     Conclusion : pour vous assurer une sauvegarde qui n'impacte pas le déroulement du jeu il  
-        faut faire en sorte que chaque fichier.board soit utilisé une et une seule fois (meme à l'interieur d'un fichier .game)
+        faut faire en sorte que chaque fichier.board soit utilisé une et une seule fois (même à l'intérieur d'un fichier .game)
         
 
